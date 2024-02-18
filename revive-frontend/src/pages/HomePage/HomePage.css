@@ -41,9 +41,10 @@
         margin: 2vh;
         padding: 2vh;
         text-align: center;
+        width: 100%;
     }
-    .hero-content p{
-        width: fit-content;
+    .home .hero-content p{
+        width:100%;
     }
 
 }

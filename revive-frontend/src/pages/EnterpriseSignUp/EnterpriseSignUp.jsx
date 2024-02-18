@@ -59,6 +59,7 @@ export default function EnterpriseSignUp() {
      {
       toast.success('Account Created Successfully')
       navigate('/dashboard/enterprises')
+      axios.post('http:')
      }
     } catch (error) {
       console.log(error)
@@ -116,12 +117,30 @@ export default function EnterpriseSignUp() {
               </div>
               <form onSubmit={handleSubmit}>
                 <FormControl>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Company Name</FormLabel>
                   <Input
                     name="name"
                     type="text"
-                    placeholder="Your Name"
+                    placeholder="Your Company's Name"
                     value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <FormLabel>Applicant Name</FormLabel>
+                  <Input
+                    name="applicant"
+                    type="text"
+                    placeholder="Your Name"
+                    value={formData.applicant}
+                    onChange={handleChange}
+                    required
+                  />
+                  <FormLabel>Applicant Role</FormLabel>
+                  <Input
+                    name="role"
+                    type="text"
+                    placeholder="Your Role"
+                    value={formData.role}
                     onChange={handleChange}
                     required
                   />

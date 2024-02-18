@@ -11,7 +11,7 @@ const HomePage = () => {
           into <span>Wealth</span> Now
         </h1>
         <p>
-          {" "}
+        
           We help you sell your old electronics for good money. With our app,
           you can easily get rid of your unused gadgets and make some cash. Just
           tell us about your device, and we'll find buyers who'll give you the
