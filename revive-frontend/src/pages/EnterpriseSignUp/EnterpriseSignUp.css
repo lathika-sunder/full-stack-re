@@ -1,0 +1,39 @@
+.otp-verification{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.otp-verification {
+    text-align: center;
+    
+  }
+  
+
+  /* Style for OTP input */
+  input[type="text"].otp-input {
+    width: 4vh;
+    height: 5vh;
+    font-size: 2.33vh;
+    padding: 1vh;
+    text-align: center;
+    border: 0.1vh solid #ccc;
+    border-radius: 3vh;
+    margin-right: 3vh;
+  }
+  
+  input[type="text"].otp-input:focus {
+    outline: none;
+    border-color: #26FF00;
+  }
+  .otp-container{
+    margin: 5vh;
+  }
+
+  .otp-confirm-msg{
+   
+    text-decoration: underline;
+  }

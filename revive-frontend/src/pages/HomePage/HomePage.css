@@ -1,0 +1,49 @@
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.hero-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    flex-direction: column;
+    margin: 12vh;
+    padding: 12vh;
+}
+.hero-content{
+   
+}
+.hero-content p{
+    font-size: medium;
+    text-align: center;
+   
+    line-height: 1.8;
+    font-family: sans-serif;
+    
+}
+.home .hero-content p{
+    width: 135vh;
+}
+.hero-content span{
+   color:  #00c200
+}
+
+.hero-content .buttons button{
+    margin: 1vh;
+}
+
+@media only screen and (max-width:768px){
+    
+    .hero-content{
+        margin: 2vh;
+        padding: 2vh;
+        text-align: center;
+    }
+    .hero-content p{
+        width: fit-content;
+    }
+
+}

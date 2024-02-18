@@ -1,0 +1,12 @@
+.sign-up-landing{
+    display: flex;
+    flex-direction: row;
+}
+.sign-up-landing .column{
+    width: 180vh;
+}
+.sign-up-landing .line{
+    background-color: rgba(0, 0, 0, 0.637);
+    width: 0.1vh;
+   height: 40vmax;
+}
