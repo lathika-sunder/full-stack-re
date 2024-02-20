@@ -30,7 +30,7 @@ const HomePage = () => {
               Sign Up
             </Button>
           </Link>
-          <Button variant="outlined" color="success">
+          <Button variant="contained" color="success">
             Login
           </Button>
         </div>

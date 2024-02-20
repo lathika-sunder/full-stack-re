@@ -46,17 +46,20 @@ export default function LoginPage() {
         const recaptcha=await sendCaptcha()
         if(recaptcha)
         {
-            
-            axios.post('http://localhost:4040/api/v1/users/login',formData)
-            .then((response)=>{
-              if(response.status==201)
-              {
-                alert("User Logged In Successfully")
-                toast.success("Login successful")
-              }
-            }).catch((error)=>{
-                console.log("Error Logging in",error)
-            })
+          axios.post('http://localhost:4040/api/v1/users/login', formData)
+          .then((response) => {
+            if (response.status === 201) {
+              const { token } = response.data; 
+              localStorage.setItem('token', token);
+              navigate('/dashboard/individuals')
+              alert("User Logged In Successfully");
+              toast.success("Login successful");
+            }
+          })
+          .catch((error) => {
+            console.log("Error Logging in", error);
+          });
+        
         }
     
     } catch (error) {
