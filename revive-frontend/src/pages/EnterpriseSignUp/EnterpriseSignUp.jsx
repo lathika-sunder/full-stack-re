@@ -58,8 +58,8 @@ export default function EnterpriseSignUp() {
       if(result)
      {
       toast.success('Account Created Successfully')
-      navigate('/dashboard/enterprises')
-      axios.post('http:')
+       navigate('/login')
+      
      }
     } catch (error) {
       console.log(error)

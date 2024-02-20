@@ -13,14 +13,16 @@ import { CgSpinner } from "react-icons/cg";
 import "./IndividualSignUp.css";
 import auth from "../../assets/firebase/setup";
 import { ToastContainer, toast } from "react-toastify";
-import { signInWithPhoneNumber,RecaptchaVerifier } from "firebase/auth";
-import {useNavigate} from 'react-router-dom'
-export default function IndividualSignUp() {
+import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-  const navigate=useNavigate()
+
+export default function IndividualSignUp() {
+  
+  const navigate = useNavigate();
   const [isOtpSent, setIsOtpSent] = React.useState(false);
   const [otp, setOtp] = React.useState("");
-  const [user,setUser]=React.useState(null);
+  const [user, setUser] = React.useState(null);
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -41,27 +43,37 @@ export default function IndividualSignUp() {
     e.preventDefault();
     try {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
-      console.log(formData)
-      const confirmation=await signInWithPhoneNumber(auth,formData.mobile,recaptcha)
-      if(confirmation)
-      setIsOtpSent(true)
-      setUser(confirmation)
-    } catch (error) {
-      
-    }
-
+      console.log(formData);
+      const confirmation = await signInWithPhoneNumber(
+        auth,
+        formData.mobile,
+        recaptcha
+      );
+      if (confirmation) setIsOtpSent(true);
+      setUser(confirmation);
+    } catch (error) {}
   };
 
-  const verifyOTP = async() => {
+  const postData = (request,response) => {
+    axios
+      .post("http://localhost:4040/api/v1/individuals", formData)
+      .then((response) => {
+        alert("Account Created Successfully");
+        navigate("/login");
+      })
+      .catch((err) => alert(err));
+  };
+  const verifyOTP = async () => {
     try {
-      const result=await user.confirm(otp)
-      if(result)
-     {
-      await toast.success('Account Created Successfully')
-      navigate('/dashboard/individuals')
-     }
+      const result = await user.confirm(otp);
+      if (result) {
+        toast.success("Account Created Successfully");
+        navigate("/login");
+        postData();
+      }
     } catch (error) {
-      console.log(error)
+      toast.error("OTP Incorrect.Try again");
+      console.log(error);
     }
   };
   return (
@@ -83,7 +95,6 @@ export default function IndividualSignUp() {
           }}
           variant="outlined"
         >
-          
           {isOtpSent ? (
             <div className="otp-verification">
               <div className="verification-container">
@@ -100,7 +111,7 @@ export default function IndividualSignUp() {
                   containerStyle="otp-container"
                 />
                 <Button color="success" onClick={verifyOTP}>
-                  <CgSpinner/> Verify OTP
+                  <CgSpinner /> Verify OTP
                 </Button>
               </div>
             </div>
@@ -191,7 +202,6 @@ export default function IndividualSignUp() {
             </div>
           )}
         </Sheet>
-
       </main>
     </CssVarsProvider>
   );

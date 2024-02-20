@@ -20,8 +20,8 @@ const NavbarComp = () => {
         <nav className="navbar"  style={{ display: showResponsiveNav ? "none" : "" }}>
           <Link to='/'>Home</Link>
           <Link to='/sign-up'>Sign up</Link>
-          <a href="#project">Project</a>
-          <a href="#contact">Contact me</a>
+          <Link to='/login'>Login</Link>
+          <a href="/contact">Contact Us</a>
         </nav>
 
         <div className="responsive-navbar-container">
@@ -32,11 +32,11 @@ const NavbarComp = () => {
           className="responsive-navbar"
           style={{ display: showResponsiveNav ? "flex" : "none" }}
         >
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
+          <Link to='/'>Home</Link>
+          <Link to='/sign-up'>Sign up</Link>
+          <Link to='/login'>Login</Link>
           <a href="#project">Project</a>
-          <a href="#contact">Contact me</a>
+          <a href="#contact">Contact Us</a>
           
         </nav>
        
