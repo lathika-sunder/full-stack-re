@@ -3,11 +3,13 @@ import "./HomePage.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import homeImg from '../../assets/images/home-img.png';
+import responsiveHomeImg from '../../assets/images/responsive-home-img.png';
 import logo from '../../assets/images/revive-logo.png';
 const HomePage = () => {
   return (
     <div className="home">
       <img className="home-img" src={homeImg}></img>
+      <img className="responsive-home-img" src={responsiveHomeImg}></img>
       <div className="hero-content">
         
         <h1>

@@ -51,13 +51,17 @@
     margin: 1vh;
 }
 
+.responsive-home-img{
+    display: none;
+ }
 @media only screen and (max-width:768px){
     
     .hero-content{
         margin: 2vh;
         padding: 2vh;
-        text-align: center;
+        /* text-align: center; */
         width: 100%;
+        background-color: rgba(240, 255, 248, 0.557);
     }
     .home .hero-content p{
         width:100%;
@@ -66,12 +70,18 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+
     }
     body{
         overflow-x:hidden ;
     }
     .home-img{
-        display: none;
+       display: none;
     }
-
+    .responsive-home-img{
+        display: flex;
+        height: 32vh;
+        width: 40vh;
+        
+     }
 }
