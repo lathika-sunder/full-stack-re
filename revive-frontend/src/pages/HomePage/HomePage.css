@@ -2,7 +2,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+   height: 85vh;
+}
+.home{
+    background-image: url("https://www.startpage.com/av/proxy-image?piurl=http%3A%2F%2Fclipart-library.com%2Fimages_k%2Ftransparent-nature%2Ftransparent-nature-19.png&sp=1708412366Tb820907b74693c420b9a94a414129959eaa4719eb720c8b8dacbb91eb2bbf8e1");
+    backface-visibility: 50%;
     
+}
+
+.home-img{
+    /* height: 50vh; */
+    width: 50vh;
+    /* left:10vh */
 }
 .hero-content{
     display: flex;
@@ -11,7 +22,7 @@
     font-size: x-large;
     flex-direction: column;
     margin: 12vh;
-    padding: 12vh;
+    padding: 2vh;
 }
 .home .hero-content img{
     padding: 0;
@@ -50,6 +61,17 @@
     }
     .home .hero-content p{
         width:100%;
+    }
+    .home{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    body{
+        overflow-x:hidden ;
+    }
+    .home-img{
+        display: none;
     }
 
 }

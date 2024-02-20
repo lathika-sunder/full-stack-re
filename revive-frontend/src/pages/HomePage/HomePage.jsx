@@ -2,12 +2,14 @@ import React from "react";
 import "./HomePage.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import homeImg from '../../assets/images/home-img.png';
 import logo from '../../assets/images/revive-logo.png';
 const HomePage = () => {
   return (
     <div className="home">
+      <img className="home-img" src={homeImg}></img>
       <div className="hero-content">
-        {/* <img src={logo}></img> */}
+        
         <h1>
           Turn your <span>Waste </span>
           into <span>Wealth</span> Now

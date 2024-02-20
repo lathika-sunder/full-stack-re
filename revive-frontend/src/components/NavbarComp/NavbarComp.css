@@ -62,7 +62,7 @@
     flex-direction: column;
     z-index: 999;
 
-    padding: 2vh 6vh 2vh 6vh;
+    /* padding: 2vh 6vh 2vh 6vh; */
     /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);

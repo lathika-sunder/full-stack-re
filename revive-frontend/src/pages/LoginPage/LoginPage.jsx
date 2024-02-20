@@ -31,6 +31,7 @@ export default function LoginPage() {
       ...prevData,
       [name]: value,
     }));
+    
   };
 
   const sendCaptcha= async ()=>{
