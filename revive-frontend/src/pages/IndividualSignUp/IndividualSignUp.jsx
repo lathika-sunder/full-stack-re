@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function IndividualSignUp() {
-  
+
   const navigate = useNavigate();
   const [isOtpSent, setIsOtpSent] = React.useState(false);
   const [otp, setOtp] = React.useState("");
@@ -63,6 +63,7 @@ export default function IndividualSignUp() {
       })
       .catch((err) => alert(err));
   };
+
   const verifyOTP = async () => {
     try {
       const result = await user.confirm(otp);
@@ -76,6 +77,7 @@ export default function IndividualSignUp() {
       console.log(error);
     }
   };
+
   return (
     <CssVarsProvider>
       <ToastContainer />
@@ -157,6 +159,7 @@ export default function IndividualSignUp() {
                     value={formData.mobile}
                     onChange={handleChange}
                     required
+                    minLength={10}
                   />
                 </FormControl>
 
@@ -168,6 +171,7 @@ export default function IndividualSignUp() {
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
+                    minLength={6}
                     required
                   />
                 </FormControl>

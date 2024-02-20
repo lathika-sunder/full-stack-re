@@ -45,8 +45,17 @@ export default function LoginPage() {
         const recaptcha=await sendCaptcha()
         if(recaptcha)
         {
-            toast.success("Captcha verification successful")
-            axios.post('/')
+            
+            axios.post('http://localhost:4040/api/v1/users/login',formData)
+            .then((response)=>{
+              if(response.status==201)
+              {
+                alert("User Logged In Successfully")
+                toast.success("Login successful")
+              }
+            }).catch((error)=>{
+                console.log("Error Logging in",error)
+            })
         }
     
     } catch (error) {
