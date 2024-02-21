@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
@@ -12,25 +12,25 @@ import Box from '@mui/material/Box';
 import EnterpriseDashboard from "./pages/EnterpriseDashboard/EnterpriseDashboard";
 import IndividualDashboard from "./pages/IndividualDashboard/IndividualDashboard";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import Preloader from "./components/PreLoaderComp/PreloaderComp";
 
 const queryClient = new QueryClient();
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    setIsLoading(true)
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <NavbarComp />
         {isLoading ? (
-          <div style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }}>
-            <CircularProgress color="success"/>
-          </div>
+         <Preloader/>
         ) : (
           <Routes>
             <Route exact path="/" element={<HomePage />} />

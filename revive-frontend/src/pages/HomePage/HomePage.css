@@ -67,7 +67,7 @@
 }
 @media only screen and (max-width:768px){
     
-    .hero-content{
+    .home .hero-content{
         margin: 2vh;
         padding: 2vh;
         text-align: center;

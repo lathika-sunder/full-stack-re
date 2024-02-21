@@ -1,6 +1,14 @@
 .sign-up-landing{
     display: flex;
     flex-direction: row;
+    background-image: url("https://media.istockphoto.com/id/1084097402/vector/sunset-sunrise-vector-background.jpg?s=612x612&w=0&k=20&c=dVPwNWU5qArMPj6mjpJaHlejV-MSgdv_yGkhu2lsOzE=");
+    background-size: cover;
+}
+
+.sign-up-landing h1 span{
+    background-color: rgba(237, 239, 212, 0.368);
+    padding: 1vh;
+    border-radius: 1vh;
 }
 .sign-up-landing .column{
     width: 180vh;
