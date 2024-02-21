@@ -6,7 +6,7 @@
 }
 .home {
     background-image: url("../../assets/images/home-bg.png");
-   
+    
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -72,8 +72,8 @@
         padding: 2vh;
         text-align: center;
         width: 100%;
-        
-        background-color: rgba(240, 255, 248, 0.358);
+        background-color: rgba(240, 255, 248, 0.824);
+        box-shadow: 0.2vh 0.1vh 0.3vh 0.1vh;
     }
     .home .hero-content p{
         width:100%;
@@ -82,7 +82,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 1vh;
+        /* padding: 1vh; */
         height: 100vh;
     }
     body{

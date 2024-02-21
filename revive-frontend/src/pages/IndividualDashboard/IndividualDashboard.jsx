@@ -12,8 +12,8 @@ const IndividualDashboard = () => {
       }
     })
     .then((response) => {
-      console.log(response.data); // Log the data payload
-      setData(response.data); // Set the data payload in state
+      console.log(response.data);
+      setData(response.data); 
     })
     .catch((error) => {
       console.log("Error getting user dashboard", error);
