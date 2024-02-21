@@ -35,8 +35,8 @@ const NavbarComp = () => {
           <Link to='/'>Home</Link>
           <Link to='/sign-up'>Sign up</Link>
           <Link to='/login'>Login</Link>
-          <a href="#project">Project</a>
-          <a href="#contact">Contact Us</a>
+          <a href="/project">Project</a>
+          <a href="/contact">Contact Us</a>
           
         </nav>
        
