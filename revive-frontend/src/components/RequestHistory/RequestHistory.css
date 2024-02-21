@@ -1,0 +1,42 @@
+.Main_Container{
+    display: grid;
+    justify-items: center;
+    grid-template-rows: [row1-start] 60px [row1-end] auto [last-line];
+    /* overflow: scroll; */
+    
+}
+
+.request-list{
+    display: grid;
+    gap: 20px;
+}
+.Container{
+    display: flex;
+    grid-template-columns: repeat(3,0.75fr);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: left;
+    object-fit: contain;
+    border-radius: 2rem;
+    padding: 20px;
+}
+
+.icon{
+    height: 50px;
+}
+.processing-icon{
+    background-color: yellow;
+    border-radius: 15px;
+    border-style: solid;
+    height: 50px;
+    width: 50px;
+}
+.status{
+    padding: 20px;
+    display: grid;
+    justify-items: center;
+    
+}
+
+img{
+    border-radius: 20px;
+}

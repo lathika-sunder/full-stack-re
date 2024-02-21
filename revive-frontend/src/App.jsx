@@ -14,6 +14,8 @@ import IndividualDashboard from "./pages/IndividualDashboard/IndividualDashboard
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Preloader from "./components/PreLoaderComp/PreloaderComp";
 import ErrorComp from "./components/ErrorComp/ErrorComp";
+import SchedulePickup from "./pages/SchedulePickup/SchedulePickup";
+import IndividualsSaleHistoryPage from "./pages/IndividualsSaleHistory/IndividualsSaleHistoryPage";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +72,16 @@ function App() {
               exact
               path="*"
               element={<ErrorComp />}
+            />
+            <Route
+              exact
+              path="/sell-waste/individual"
+              element={<SchedulePickup />}
+            />
+            <Route
+              exact
+              path="/sale-history/individual"
+              element={<IndividualsSaleHistoryPage />}
             />
           </Routes>
         )}
