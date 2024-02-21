@@ -13,6 +13,7 @@ import EnterpriseDashboard from "./pages/EnterpriseDashboard/EnterpriseDashboard
 import IndividualDashboard from "./pages/IndividualDashboard/IndividualDashboard";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Preloader from "./components/PreLoaderComp/PreloaderComp";
+import ErrorComp from "./components/ErrorComp/ErrorComp";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,11 @@ function App() {
               exact
               path="/login"
               element={<LoginPage />}
+            />
+             <Route
+              exact
+              path="*"
+              element={<ErrorComp />}
             />
           </Routes>
         )}
