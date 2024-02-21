@@ -5,8 +5,19 @@ import InputTag from "./InputTag";
 import OrderSummaryComponent from "../RequestPickupComponent/OrderSummaryComponent";
 import { useNavigate } from "react-router-dom";
 import "./RequestPickupComponent.css";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import axios from "axios";
 
 const RequestPickupComponent = () => {
+  const [electricProducts, setElectricProducts] = useState([]);
+  axios
+    .get("http://localhost:4040/api/v1/electricProducts")
+    .then((response) => {
+      setElectricProducts(response.data);
+    });
+
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [image, setImage] = useState([]);
   const [description, setDescription] = useState("");
@@ -14,7 +25,6 @@ const RequestPickupComponent = () => {
   const [quantity, setQuantity] = useState(0);
   const [address, setAddress] = useState("");
   const [showSummary, setShowSummary] = useState(false);
-
 
   const handleQuantityChange = (amount) => {
     setQuantity((prevQuantity) => prevQuantity + amount);
@@ -28,7 +38,21 @@ const RequestPickupComponent = () => {
     setImage(e.target.files);
   };
 
+  const postData=()=>{
+    axios.post("http://localhost:4040/api/v1/individuals/",{
+      image,
+      requestStatus:"pending",
+      description,
+      quantity,
+      tags,
+      address,
+      selectedDateTime
+    })
+  }
+
   const handleSubmit = () => {
+
+    // postData()
     console.log("Selected Date and Time:", selectedDateTime);
     console.log("Image:", image);
     console.log("Description:", description);
@@ -46,6 +70,7 @@ const RequestPickupComponent = () => {
       {!showSummary ? (
         <>
           <div className="image-container">
+            <p>Upload Image</p>
             {Array.from(image).map((item, index) => (
               <span key={index}>
                 <img
@@ -59,14 +84,18 @@ const RequestPickupComponent = () => {
             ))}
           </div>
           <input onChange={handleImageChange} multiple type="file" />
+          <p>Description</p>
           <input
             onChange={(e) => setDescription(e.target.value)}
             type="text"
             value={description}
             placeholder="description"
           />
+          <p>Quantity</p>
           <div className="quantity-container">
-            <button onClick={() => handleQuantityChange(-1)}>-</button>
+            <Button color="success" onClick={() => handleQuantityChange(-1)}>
+              -
+            </Button>
             <input
               type="text"
               placeholder="Quantity"
@@ -74,19 +103,67 @@ const RequestPickupComponent = () => {
               readOnly
               className="quantity-input"
             />
-            <button onClick={() => handleQuantityChange(1)}>+</button>
-            <div className="quantity-head">Quantity</div>
+            <Button onClick={() => handleQuantityChange(1)}>+</Button>
           </div>
-          <InputTag tags={tags} setTags={setTags} />
-
+          <p>Category</p>
+          <Autocomplete
+            style={{ border: "0" }}
+            id="include-input-in-list"
+            includeInputInList
+            onChange={(event, value) =>
+              setTags((prevData) => [...prevData, value.label])
+            }
+            options={electricProducts}
+            isOptionEqualToValue={(option, value) =>
+              option.label === value.label
+            }
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={electricProducts}
+            onChange={(event, value) =>
+              setTags((prevData) => [...prevData, value.label])
+            }
+            isOptionEqualToValue={(option, value) =>
+              option.label === value.label
+            }
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={electricProducts}
+            onChange={(event, value) =>
+              setTags((prevData) => [...prevData, value.label])
+            }
+            isOptionEqualToValue={(option, value) =>
+              option.label === value.label
+            }
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={electricProducts}
+            onChange={(event, value) =>
+              setTags((prevData) => [...prevData, value.label])
+            }
+            isOptionEqualToValue={(option, value) =>
+              option.label === value.label
+            }
+            renderInput={(params) => <TextField {...params} />}
+          />
+          <p>Address</p>
           <input
             onChange={(e) => setAddress(e.target.value)}
             type="text"
             value={address}
             placeholder="Address"
           />
+          <p>Choose Pickup date & time slot</p>
           <div className="date-picker-container">
-            <h4>Choose Pickup date & time slot</h4>
             <DatePicker
               selected={selectedDateTime}
               onChange={handleTimeChange}
@@ -94,8 +171,12 @@ const RequestPickupComponent = () => {
               dateFormat="MMMM d, yyyy h:mm aa"
             />
           </div>
+          <br />
+
           <form className="container" onSubmit={() => navigate("/proceed")}>
-            <button onClick={handleSubmit}>Proceed</button>
+            <Button variant="contained" color="success" onClick={handleSubmit}>
+              Proceed
+            </Button>
           </form>
         </>
       ) : (

@@ -1,9 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link ,useNavigate} from "react-router-dom";
+import Button from '@mui/material/Button'
+import axios from "axios";
 
 const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, quantity, address }) => {
 
-  
+ 
+
+  const handleSubmit=() => {
+    postData()
+    console.log("Order submitted")
+  }
+  const postData=()=>{
+    axios.post("http://localhost:4040/api/v1/individuals/request-pickup",{
+      image,
+      requestStatus:"pending",
+      description,
+      quantity,
+      tags,
+      address,
+      selectedDateTime
+    })
+    .then((response)=>{
+      console.log("Successfully submitted",response)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+
   return (
     <div className="container">
       <h2>Order Summary</h2>
@@ -26,12 +52,12 @@ const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, qua
       <p><strong>Quantity:</strong> {quantity}</p>
       <p><strong>Address:</strong> {address}</p>
 
-      {/* Submit button */}
-      <button onClick={() => console.log("Order submitted")}>Submit Order</button>
+      {/* Submit Button */}
+      <Button onClick={handleSubmit}>Submit Order</Button>
 
-      {/* Edit button */}
-      <Link to="/requestpickup">
-        <button>Edit Order</button>
+      {/* Edit Button */}
+      <Link to="/sell-waste/individual">
+        <Button >Edit Order</Button>
       </Link>
     </div>
   );
