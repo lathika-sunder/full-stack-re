@@ -6,7 +6,7 @@ const IndividualDashboard = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get("http://localhost:4040/api/v1/users/user", {
+    axios.get("http://localhost:4040/api/v1/individuals/individual", {
       headers: {
         Authorization: token,
       }
@@ -22,7 +22,7 @@ const IndividualDashboard = () => {
 
   return (
     <div>
-      <h1>Welcome {data.email}</h1>
+      <h1>Welcome {data.name}</h1>
     </div>
   );
 }

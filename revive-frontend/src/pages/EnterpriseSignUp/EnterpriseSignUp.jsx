@@ -13,16 +13,19 @@ import { CgSpinner } from "react-icons/cg";
 import "./EnterpriseSignUp.css";
 import auth from "../../assets/firebase/setup";
 import { ToastContainer, toast } from "react-toastify";
-import { signInWithPhoneNumber,RecaptchaVerifier } from "firebase/auth";
-import {useNavigate} from 'react-router-dom'
+import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 export default function EnterpriseSignUp() {
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [isOtpSent, setIsOtpSent] = React.useState(false);
   const [otp, setOtp] = React.useState("");
-  const [user,setUser]=React.useState(null);
+  const [user, setUser] = React.useState(null);
   const [formData, setFormData] = React.useState({
-    name: "",
+    companyName: "",
+    applicantName: "",
+    applicantRole: "",
     email: "",
     address: "",
     mobile: "",
@@ -37,34 +40,48 @@ export default function EnterpriseSignUp() {
     }));
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
-      console.log(formData)
-      const confirmation=await signInWithPhoneNumber(auth,formData.mobile,recaptcha)
-      if(confirmation)
-      setIsOtpSent(true)
-      setUser(confirmation)
+      console.log(formData);
+      const confirmation = await signInWithPhoneNumber(
+        auth,
+        formData.mobile,
+        recaptcha
+      );
+      if (confirmation) setIsOtpSent(true);
+      setUser(confirmation);
     } catch (error) {
-      
+      console.log("error",error)
     }
-
   };
 
-  const verifyOTP = async() => {
+  const postData = (request, response) => {
+    axios
+      .post("http://localhost:4040/api/v1/enterprises", formData)
+      .then((response) => {
+        alert("Account Created Successfully");
+        navigate("/login");
+      })
+      .catch((err) => alert(err));
+  };
+
+  const verifyOTP = async () => {
     try {
-      const result=await user.confirm(otp)
-      if(result)
-     {
-      toast.success('Account Created Successfully')
-       navigate('/login')
-      
-     }
+      const result = await user.confirm(otp);
+      if (result) {
+        toast.success("Account Created Successfully");
+        navigate("/login");
+        postData();
+      }
     } catch (error) {
-      console.log(error)
+      toast.error("OTP Incorrect.Try again");
+      console.log(error);
     }
   };
+
   return (
     <CssVarsProvider>
       <ToastContainer />
@@ -84,7 +101,6 @@ export default function EnterpriseSignUp() {
           }}
           variant="outlined"
         >
-          
           {isOtpSent ? (
             <div className="otp-verification">
               <div className="verification-container">
@@ -101,7 +117,7 @@ export default function EnterpriseSignUp() {
                   containerStyle="otp-container"
                 />
                 <Button color="success" onClick={verifyOTP}>
-                  <CgSpinner/> Verify OTP
+                  <CgSpinner /> Verify OTP
                 </Button>
               </div>
             </div>
@@ -119,28 +135,32 @@ export default function EnterpriseSignUp() {
                 <FormControl>
                   <FormLabel>Company Name</FormLabel>
                   <Input
-                    name="name"
+                    name="companyName"
                     type="text"
                     placeholder="Your Company's Name"
-                    value={formData.name}
+                    value={formData.companyName}
                     onChange={handleChange}
                     required
                   />
+                </FormControl>
+                <FormControl>
                   <FormLabel>Applicant Name</FormLabel>
                   <Input
-                    name="applicant"
+                    name="applicantName"
                     type="text"
                     placeholder="Your Name"
-                    value={formData.applicant}
+                    value={formData.applicantName}
                     onChange={handleChange}
                     required
                   />
                   <FormLabel>Applicant Role</FormLabel>
+                </FormControl>
+                <FormControl>
                   <Input
-                    name="role"
+                    name="applicantRole"
                     type="text"
                     placeholder="Your Role"
-                    value={formData.role}
+                    value={formData.applicantRole}
                     onChange={handleChange}
                     required
                   />
@@ -210,7 +230,6 @@ export default function EnterpriseSignUp() {
             </div>
           )}
         </Sheet>
-
       </main>
     </CssVarsProvider>
   );

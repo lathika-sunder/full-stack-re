@@ -49,9 +49,16 @@ export default function LoginPage() {
           axios.post('http://localhost:4040/api/v1/users/login', formData)
           .then((response) => {
             if (response.status === 201) {
-              const { token } = response.data; 
+              const { token,role } = response.data; 
               localStorage.setItem('token', token);
-              navigate('/dashboard/individuals')
+
+              if(role==="individual")
+              {
+                navigate('/dashboard/individuals')
+              }
+              else{
+                navigate('/dashboard/enterprises')
+              }
               alert("User Logged In Successfully");
               toast.success("Login successful");
             }

@@ -61,6 +61,11 @@ function App() {
               path="/login"
               element={<LoginPage />}
             />
+            <Route
+              exact
+              path="/dashboard"
+              element={<ErrorComp />}
+            />
              <Route
               exact
               path="*"
