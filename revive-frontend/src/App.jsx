@@ -80,7 +80,7 @@ function App() {
             />
             <Route
               exact
-              path="/sale-history/individual"
+              path="/request-history/individual"
               element={<IndividualsSaleHistoryPage />}
             />
           </Routes>

@@ -11,23 +11,34 @@ const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, qua
     postData()
     console.log("Order submitted")
   }
-  const postData=()=>{
-    axios.post("http://localhost:4040/api/v1/individuals/request-pickup",{
-      image,
-      requestStatus:"pending",
-      description,
-      quantity,
-      tags,
-      address,
-      selectedDateTime
-    })
-    .then((response)=>{
-      console.log("Successfully submitted",response)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
+  const postData = () => {
+    const token = localStorage.getItem('token');
+    
+    // Ensure token is not null and handle token format according to server requirements
+
+    const headers = {
+        'Authorization': token
+    };
+
+    const requestData = {
+        image,
+        requestStatus: "pending",
+        description,
+        quantity,
+        tags,
+        address,
+        selectedDateTime
+    };
+
+    axios.post("http://localhost:4040/api/v1/individuals/request-pickup", requestData, { headers })
+        .then((response) => {
+            console.log("Successfully submitted", response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
 
 
   return (

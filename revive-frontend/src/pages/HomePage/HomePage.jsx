@@ -30,9 +30,12 @@ const HomePage = () => {
               Sign Up
             </Button>
           </Link>
+          <Link to="/login">
           <Button variant="contained" color="success">
             Login
           </Button>
+          </Link>
+          
         </div>
       </div>
     </div>

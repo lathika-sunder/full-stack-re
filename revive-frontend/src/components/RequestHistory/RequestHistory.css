@@ -6,6 +6,17 @@
     
 }
 
+.waste-tags{
+    background: rgba(108, 232, 116, 0.808);
+box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba(64, 255, 0, 0.731);
+padding:1vh;
+margin: 1vh;
+}
+
 .request-list{
     display: grid;
     gap: 20px;
@@ -24,11 +35,12 @@
     height: 50px;
 }
 .processing-icon{
-    background-color: yellow;
+    background-color: rgb(234, 246, 185);
     border-radius: 15px;
     border-style: solid;
     height: 50px;
     width: 50px;
+    text-align: center;
 }
 .status{
     padding: 20px;

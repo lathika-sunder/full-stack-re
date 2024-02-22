@@ -38,20 +38,23 @@ const RequestPickupComponent = () => {
     setImage(e.target.files);
   };
 
-  const postData=()=>{
-    axios.post("http://localhost:4040/api/v1/individuals/",{
+  const postData = () => {
+    axios.post("http://localhost:4040/api/v1/individuals/", {
       image,
-      requestStatus:"pending",
+      requestStatus: "pending",
       description,
       quantity,
       tags,
       address,
-      selectedDateTime
-    })
-  }
+      selectedDateTime,
+      headers: {
+        Authorization: `${localStorage.getItem("token")}`,
+      },
+
+    });
+  };
 
   const handleSubmit = () => {
-
     // postData()
     console.log("Selected Date and Time:", selectedDateTime);
     console.log("Image:", image);
