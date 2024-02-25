@@ -15,11 +15,12 @@ import auth from "../../assets/firebase/setup";
 import { ToastContainer, toast } from "react-toastify";
 import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { FaCheck } from "react-icons/fa";
 
 export default function EnterpriseSignUp() {
-
   const navigate = useNavigate();
   const [isOtpSent, setIsOtpSent] = React.useState(false);
+  const [isOtpVerified, setIsOtpVerified] = React.useState(true);
   const [otp, setOtp] = React.useState("");
   const [user, setUser] = React.useState(null);
   const [formData, setFormData] = React.useState({
@@ -30,6 +31,7 @@ export default function EnterpriseSignUp() {
     address: "",
     mobile: "",
     password: "",
+    gstNumber: "",
   });
 
   const handleChange = (e) => {
@@ -40,21 +42,19 @@ export default function EnterpriseSignUp() {
     }));
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
+      // const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
       console.log(formData);
       const confirmation = await signInWithPhoneNumber(
         auth,
-        formData.mobile,
-        recaptcha
+        formData.mobile
       );
       if (confirmation) setIsOtpSent(true);
       setUser(confirmation);
     } catch (error) {
-      console.log("error",error)
+      console.log("error", error);
     }
   };
 
@@ -73,11 +73,26 @@ export default function EnterpriseSignUp() {
       const result = await user.confirm(otp);
       if (result) {
         toast.success("Account Created Successfully");
-        navigate("/login");
-        postData();
+        setIsOtpVerified(true);
       }
     } catch (error) {
       toast.error("OTP Incorrect.Try again");
+      console.log(error);
+    }
+  };
+
+  const verifyGST = () => {
+    try {
+      if (formData.gstNumber === "abc") {
+        console.log("GST Verified");
+        postData();
+        navigate("/login");
+        
+      } else {
+        toast.error("GST ID Incorrect.Try again");
+        
+      }
+    } catch (error) {
       console.log(error);
     }
   };
@@ -98,28 +113,52 @@ export default function EnterpriseSignUp() {
             gap: 2,
             borderRadius: "sm",
             boxShadow: "md",
+            backgroundColor: "#DEF3D7",
           }}
           variant="outlined"
         >
           {isOtpSent ? (
-            <div className="otp-verification">
-              <div className="verification-container">
-                <p className="otp-confirm-msg">
-                  Verify OTP for {formData.mobile}
-                </p>
-                <OtpInput
-                  value={otp}
-                  onChange={setOtp}
-                  numInputs={6}
-                  separator={<span> </span>}
-                  inputStyle="otp-input"
-                  renderInput={(props) => <input {...props} />}
-                  containerStyle="otp-container"
-                />
-                <Button color="success" onClick={verifyOTP}>
-                  <CgSpinner /> Verify OTP
-                </Button>
-              </div>
+            <div className="enterprise-verification">
+              <h1>Let us verify you...</h1>
+
+              {!isOtpVerified ? (
+                <div className="otp-verification">
+                  <div className="verification-container">
+                    <p className="otp-confirm-msg">
+                      Verify OTP for {formData.mobile}
+                    </p>
+                    <OtpInput
+                      value={otp}
+                      onChange={setOtp}
+                      numInputs={6}
+                      separator={<span> </span>}
+                      inputStyle="otp-input"
+                      renderInput={(props) => <input {...props} />}
+                      containerStyle="otp-container"
+                    />
+                    <Button color="success" onClick={verifyOTP}>
+                      <CgSpinner /> Verify OTP
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="gst-verification">
+                  <form onSubmit={verifyGST}>
+                    <FormControl>
+                      <FormLabel>GST Number</FormLabel>
+                      <Input
+                        name="gstNumber"
+                        type="text"
+                        value={formData.gstNumber}
+                        onChange={handleChange}
+                      />
+                      <Button onClick={verifyGST}>
+                        <FaCheck /> Verify GST
+                      </Button>
+                    </FormControl>
+                  </form>
+                </div>
+              )}
             </div>
           ) : (
             <div>

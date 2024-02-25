@@ -2,10 +2,10 @@
     display: grid;
     justify-items: center;
     grid-template-rows: [row1-start] 60px [row1-end] auto [last-line];
-    /* overflow: scroll; */
+   
     
 }
-
+{}
 .waste-tags{
     background: rgba(108, 232, 116, 0.808);
 box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);

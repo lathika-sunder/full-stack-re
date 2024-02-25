@@ -5,16 +5,18 @@ import axios from "axios";
 
 const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, quantity, address }) => {
 
+  const navigate =useNavigate()
  
 
   const handleSubmit=() => {
     postData()
     console.log("Order submitted")
+    navigate('/request-history/individual')
   }
   const postData = () => {
     const token = localStorage.getItem('token');
     
-    // Ensure token is not null and handle token format according to server requirements
+
 
     const headers = {
         'Authorization': token
@@ -33,10 +35,12 @@ const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, qua
     axios.post("http://localhost:4040/api/v1/individuals/request-pickup", requestData, { headers })
         .then((response) => {
             console.log("Successfully submitted", response);
+            
         })
         .catch((error) => {
             console.log(error);
         });
+        
 };
 
 
