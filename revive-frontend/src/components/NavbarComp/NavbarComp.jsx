@@ -21,6 +21,7 @@ const NavbarComp = () => {
           <Link to='/'>Home</Link>
           <Link to='/sign-up'>Sign up</Link>
           <Link to='/login'>Login</Link>
+          <Link to="/scrap-dealers">Scrap Dealers</Link>
           <a href="/contact">Contact Us</a>
         </nav>
 
@@ -35,7 +36,7 @@ const NavbarComp = () => {
           <Link to='/'>Home</Link>
           <Link to='/sign-up'>Sign up</Link>
           <Link to='/login'>Login</Link>
-          <a href="/project">Project</a>
+          <Link to="/scrap-dealers">Scrap Dealers</Link>
           <a href="/contact">Contact Us</a>
           
         </nav>
