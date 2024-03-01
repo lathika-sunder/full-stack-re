@@ -104,7 +104,7 @@ const ScrapDealersDashboard = () => {
           <div className="task-box blue">
             <div className="description-task">
               <div className="time"></div>
-              <Link to="http://localhost:5173/auction-website/">
+              <Link to="http://localhost:5173/auction-website/admin">
                 <div className="task-name">Auction Status</div>
               </Link>
             </div>
@@ -127,7 +127,7 @@ const ScrapDealersDashboard = () => {
           <div className="task-box red">
             <div className="description-task">
               <div className="task-name">
-                <Link to="http://localhost:5173/auction-website/">
+                <Link to="http://localhost:5173/auction-website/admin">
                   Host Auction Now
                 </Link>
                 <div className="more-button"></div>
