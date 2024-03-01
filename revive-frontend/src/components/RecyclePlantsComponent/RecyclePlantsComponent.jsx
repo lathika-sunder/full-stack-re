@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import '../RecyclePlantsComponent/RecyclePlantsComponent.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 
 const RecyclePlantsComponent = () => {
     useEffect(() => {
@@ -30,7 +30,7 @@ const RecyclePlantsComponent = () => {
                     <h3 className="theory">
                         Sell your E-waste and be a catalyst for a sustainable future
                     </h3>
-                    <button className='mui-btn'><h1>Join auction!</h1></button>
+                    <Link to="http://localhost:5174/auction-website/admin" className='mui-btn'><h1>Join auction!</h1></Link>
                 </div>
             </section>
         </div>

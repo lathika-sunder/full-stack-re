@@ -1,7 +1,7 @@
 .sign-up-landing {
     display: flex;
     flex-direction: row;
-    background-image: url("../../assets/images/sign-up-landing.jpg");
+    /* background-image: url("../../assets/images/sign-up-landing.jpg"); */
     background-size: cover;
     
 }
