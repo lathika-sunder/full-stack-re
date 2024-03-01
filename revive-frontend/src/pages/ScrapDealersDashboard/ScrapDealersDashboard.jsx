@@ -2,6 +2,7 @@ import "./ScrapDealersDashboard.css";
 import React from "react";
 import { FaMoneyCheckAlt, FaPhone } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
+import {Link} from 'react-router-dom'
 
 const ScrapDealersDashboard = () => {
   const tasks = [
