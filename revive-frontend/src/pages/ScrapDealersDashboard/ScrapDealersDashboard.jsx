@@ -6,15 +6,24 @@ import crossIcon from "./../../assets/icons/cross.svg"
 import { IoMdContact } from "react-icons/io";
 import { setCurrentScreen } from "firebase/analytics";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const ScrapDealersDashboard = () => {
   const base_url = "http://localhost:4040/api/v1";
 
   const tasks = [
-    { id: 1, description: "Dashboard Design Implementation", status: "Approved" },
+    {
+      id: 1,
+      description: "Dashboard Design Implementation",
+      status: "Approved",
+    },
     { id: 2, description: "Create a userflow", status: "In Progress" },
     { id: 3, description: "Application Implementation", status: "In Review" },
     { id: 4, description: "Create a Dashboard Design", status: "In Progress" },
-    { id: 5, description: "Create a Web Application Design", status: "Approved" },
+    {
+      id: 5,
+      description: "Create a Web Application Design",
+      status: "Approved",
+    },
   ];
   const [notifications, setNotification] = useState([]);
 
@@ -25,56 +34,20 @@ const ScrapDealersDashboard = () => {
 
   const handleTick = async (reqId) => {
     const token = window.localStorage.getItem("token");
-    console.log("token: ",token);
+    console.log("token: ", token);
 
-    const data = {
-      requestId: reqId,
-      status: "accepted",
-    }
+    fetch(`${base_url}/scrap-dealers/update-request`, {
+      method: "POST",
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      }, body: JSON.stringify({
+        requestId: reqId,
+        status: "accepted",
+      })
+    }).then((res) => res.json()).then((data) => console.log(data))
+      .catch((err) => console.log(err));
 
-
-    // fetch("http://localhost:4040/api/v1/scrap-dealers/update-request",{
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //      Authorization: `Bearer ${token}`,
-    //   },
-    //   body: JSON.stringify(data),
-    // }).then((res)=>res.json()).then((data)=>console.log(data));
-
- 
-    // axios.post("http://localhost:4040/api/v1/scrap-dealers/update-request", {
-    //   data,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //      Authorization: `Bearer ${token}`,
-    //   },
-    // }
-    // ).then((res) => console.log(res.json())).then((data)=>console.log(data));
-
-  //   async function api_post() {
-  //     try {
-  //       const response = await fetch(`${base_url}/scrap-dealers/update-request`, {
-  //         method: 'POST',
-  //         body: {
-  //               requestId: `${reqId}`,
-  //               status: "accepted",
-  //             },
-  //       });
-    
-  //       if (!response.ok) {
-  //         throw new Error(`Error! status: ${response.status}`);
-  //       }
-    
-  //       const result = await response.json();
-  //       return result;
-  //     } 
-  //     catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-
-  //   console.log(api_post());
   }
 
   const handleCross = () => {
@@ -183,7 +156,9 @@ const ScrapDealersDashboard = () => {
           <div className="task-box red">
             <div className="description-task">
               <div className="task-name">
-                Host Auction Now
+                <Link to="http://localhost:5173/auction-website/admin">
+                  Host Auction Now
+                </Link>
                 <div className="more-button"></div>
                 <div className="members">
                   <FaMoneyCheckAlt />

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-   height: 85vh;
+   height: 88.2vh;
 }
 .home {
     background-image: url("../../assets/images/home-bg.png");
@@ -31,9 +31,7 @@
     margin: 0;
     height: 26vh;
 }
-.hero-content{
-   
-}
+
 .hero-content p{
     font-size: medium;
     text-align: center;

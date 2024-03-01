@@ -8,7 +8,7 @@ const SignUpPage = () => {
     <div className="sign-up-landing">
       <div className="column">
         <div className="hero-content">
-          <h1><span>Individuals</span></h1>
+          <h1>Individuals</h1>
           <p>Clear out your clutter and pocket extra cash by selling your old electronics with Revive</p>
           <Link to="/sign-up/individuals">
             <Button style={{ backgroundColor: "green", color: "white" }}>

@@ -18,6 +18,8 @@ import SchedulePickup from "./pages/SchedulePickup/SchedulePickup";
 import IndividualsSaleHistoryPage from "./pages/IndividualsSaleHistory/IndividualsSaleHistoryPage";
 import ScrapDealersHome from "./pages/ScrapDealersHome/ScrapDealersHome";
 import ScrapDealersDashboard from "./pages/ScrapDealersDashboard/ScrapDealersDashboard";
+import '../src/components/RecyclePlantsComponent/RecyclePlantsComponent'
+import RecyclePlantsComponent from "../src/components/RecyclePlantsComponent/RecyclePlantsComponent";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,11 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/sign-up" element={<SignUpPage />} />
+            <Route
+              exact
+              path="/recycle-plants"
+              element={<RecyclePlantsComponent/>}
+            />
             <Route
               exact
               path="/sign-up/individuals"
