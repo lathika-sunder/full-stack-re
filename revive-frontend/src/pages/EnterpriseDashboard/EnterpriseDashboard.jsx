@@ -39,7 +39,7 @@ const EnterpriseDashboard = () => {
       <div className="ag-format-container">
         <div className="ag-courses_box">
           <div className="ag-courses_item">
-            <Link to="/sell-waste/individual" className="ag-courses-item_link">
+            <Link to="/sell-waste/enterprise" className="ag-courses-item_link">
               <div className="ag-courses-item_bg"></div>
 
               <div className="ag-courses-item_title">Sell Waste</div>

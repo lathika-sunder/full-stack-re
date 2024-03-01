@@ -7,6 +7,7 @@ import { IoMdContact } from "react-icons/io";
 import { setCurrentScreen } from "firebase/analytics";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 const ScrapDealersDashboard = () => {
   const base_url = "http://localhost:4040/api/v1";
 
@@ -45,7 +46,7 @@ const ScrapDealersDashboard = () => {
         requestId: reqId,
         status: "accepted",
       })
-    }).then((res) => res.json()).then((data) => console.log(data))
+    }).then((res) => res.json()).then((data) => console.log(data)).then(toast.success("Accepted Request"))
       .catch((err) => console.log(err));
 
   }
@@ -57,6 +58,7 @@ const ScrapDealersDashboard = () => {
 
   return (
     <div className="task-manager">
+      <ToastContainer/>
       <div className="page-content">
         <div className="header">Schedule - Today Tasks</div>
         <div className="content-categories">
@@ -90,8 +92,9 @@ const ScrapDealersDashboard = () => {
             </div>
           ))}
         </div>
+        <div className="notification-container">
         <div className="header">Notifications</div>
-        <div className="tasks-wrapper">
+        <div className="tasks-wrapper notifications">
           {notifications.map((notifications) => (
             <div className="task" key={notifications.id}>
               <input
@@ -116,6 +119,7 @@ const ScrapDealersDashboard = () => {
               <button onClick={() => console.log("Clicked Rejected")}>Reject</button> */}
             </div>
           ))}
+        </div>
         </div>
       </div>
       <div className="right-bar">
@@ -156,7 +160,7 @@ const ScrapDealersDashboard = () => {
           <div className="task-box red">
             <div className="description-task">
               <div className="task-name">
-                <Link to="http://localhost:5173/auction-website/admin">
+                <Link to="http://localhost:5174/auction-website/admin">
                   Host Auction Now
                 </Link>
                 <div className="more-button"></div>

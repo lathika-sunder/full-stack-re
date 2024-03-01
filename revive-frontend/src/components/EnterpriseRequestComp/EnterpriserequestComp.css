@@ -1,0 +1,92 @@
+.request-pickup-container {
+    max-width: 65vh;
+    margin: 9vh auto;
+    padding: 5vh;
+    border: 1vh solid black;
+    background-color: white;
+  }
+  
+  .request-pickup-container h1 {
+    font-size: 5vh;
+    margin-bottom: 20px;
+  }
+
+  .request-pickup-container input{
+    height: 4vh;
+    width: 100%;
+  }
+  
+  .request-pickup-container p {
+    font-size: 2.5vh;
+    margin-bottom: 8px;
+    padding-top: 2vh;
+  }
+  
+  .quantity-container {
+    display: flex;
+    align-items: center;
+   text-align: center;
+  }
+  
+  .quantity-container button {
+    
+   
+    border: none;
+    border-radius: 1vh;
+    cursor: pointer;
+  }
+  
+  .quantity-container input {
+    width: 5vh;
+    
+    text-align: center;
+  }
+  
+ 
+  
+  .address-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .categories input{
+    padding: 0;
+    height: 1vh;
+  }
+  
+  .date-picker-container {
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .container button:hover {
+    background-color: #45a049;
+  }
+  
+  .order-summary-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .order-summary-container p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  

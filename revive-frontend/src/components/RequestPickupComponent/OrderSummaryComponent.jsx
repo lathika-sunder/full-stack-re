@@ -46,7 +46,8 @@ const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, qua
 
 
   return (
-    <div className="container">
+    <div className="order-pickup-summary">
+      <div className="container">
       <h2>Order Summary</h2>
       <p><strong>Selected time slot:</strong> {selectedDateTime.toString()}</p>
       <div className="image-container">
@@ -67,13 +68,16 @@ const OrderSummaryComponent = ({ selectedDateTime, image, description, tags, qua
       <p><strong>Quantity:</strong> {quantity}</p>
       <p><strong>Address:</strong> {address}</p>
 
-      {/* Submit Button */}
+      <div className="buttons">
+        {/* Submit Button */}
       <Button onClick={handleSubmit}>Submit Order</Button>
 
-      {/* Edit Button */}
-      <Link to="/sell-waste/individual">
-        <Button >Edit Order</Button>
-      </Link>
+{/* Edit Button */}
+<Link to="/sell-waste/individual">
+  <Button >Edit Order</Button>
+</Link>
+      </div>
+    </div>
     </div>
   );
 };

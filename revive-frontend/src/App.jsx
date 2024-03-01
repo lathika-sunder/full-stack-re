@@ -20,6 +20,8 @@ import ScrapDealersHome from "./pages/ScrapDealersHome/ScrapDealersHome";
 import ScrapDealersDashboard from "./pages/ScrapDealersDashboard/ScrapDealersDashboard";
 import '../src/components/RecyclePlantsComponent/RecyclePlantsComponent'
 import RecyclePlantsComponent from "../src/components/RecyclePlantsComponent/RecyclePlantsComponent";
+import RecyclePlantSignUp from "./pages/RecyclePlantSignUp/RecyclePlantSignUp";
+import EnterpriserequestComp from "./components/EnterpriseRequestComp/EnterpriserequestComp";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +68,11 @@ function App() {
               path="/sign-up/enterprises"
               element={<EnterpriseSignUp />}
             />
+             <Route
+              exact
+              path="/sign-up/recycle-plants"
+              element={<RecyclePlantSignUp />}
+            />
             <Route
               exact
               path="/dashboard/individuals"
@@ -84,6 +91,7 @@ function App() {
               path="/sell-waste/individual"
               element={<SchedulePickup />}
             />
+            <Route exact path="/sell-waste/enterprise" element={<EnterpriserequestComp/>}/>
             <Route
               exact
               path="/request-history/individual"
