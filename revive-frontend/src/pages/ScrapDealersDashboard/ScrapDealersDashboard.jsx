@@ -1,19 +1,31 @@
 import "./ScrapDealersDashboard.css";
 import React from "react";
-import { FaMoneyCheckAlt,  FaPhone } from "react-icons/fa";
+import { FaMoneyCheckAlt, FaPhone } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
 
 const ScrapDealersDashboard = () => {
   const tasks = [
-    { id: 1, description: "Dashboard Design Implementation", status: "Approved" },
+    {
+      id: 1,
+      description: "Dashboard Design Implementation",
+      status: "Approved",
+    },
     { id: 2, description: "Create a userflow", status: "In Progress" },
     { id: 3, description: "Application Implementation", status: "In Review" },
     { id: 4, description: "Create a Dashboard Design", status: "In Progress" },
-    { id: 5, description: "Create a Web Application Design", status: "Approved" },
+    {
+      id: 5,
+      description: "Create a Web Application Design",
+      status: "Approved",
+    },
   ];
   const notifications = [
     { id: 6, description: "Interactive Design", status: "In Review" },
-    { id: 7, description: "Dashboard Design Implementation", status: "Waiting" },
+    {
+      id: 7,
+      description: "Dashboard Design Implementation",
+      status: "Waiting",
+    },
     { id: 8, description: "Create a userflow", status: "Waiting" },
     { id: 9, description: "Application Implementation", status: "Waiting" },
     { id: 10, description: "Create a Dashboard Design", status: "Waiting" },
@@ -76,7 +88,7 @@ const ScrapDealersDashboard = () => {
       </div>
       <div className="right-bar">
         <div className="top-part">
-        <IoMdContact/>
+          <IoMdContact />
         </div>
         <div className="header">Schedule</div>
         <div className="right-content">
@@ -84,14 +96,16 @@ const ScrapDealersDashboard = () => {
             <div className="description-task">
               <div className="task-name">Contact US</div>
               <div className="members">
-                  <FaPhone />
-                </div>
+                <FaPhone />
+              </div>
             </div>
           </div>
           <div className="task-box blue">
             <div className="description-task">
               <div className="time"></div>
-              <div className="task-name">Aucton Status</div>
+              <Link to="http://localhost:5173/auction-website/">
+                <div className="task-name">Auction Status</div>
+              </Link>
             </div>
             <div className="more-button"></div>
             <div className="members">
@@ -112,7 +126,9 @@ const ScrapDealersDashboard = () => {
           <div className="task-box red">
             <div className="description-task">
               <div className="task-name">
-                Host Auction Now
+                <Link to="http://localhost:5173/auction-website/">
+                  Host Auction Now
+                </Link>
                 <div className="more-button"></div>
                 <div className="members">
                   <FaMoneyCheckAlt />
