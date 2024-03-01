@@ -2,9 +2,10 @@
     display: grid;
     justify-items: center;
     grid-template-rows: [row1-start] 60px [row1-end] auto [last-line];
-   
+   padding: 3vh;
     
 }
+
 .waste-tags{
     background: rgba(108, 232, 116, 0.808);
 box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);
@@ -22,6 +23,7 @@ margin: 1vh;
 }
 .Container{
     display: flex;
+    justify-content: space-between;
     grid-template-columns: repeat(3,0.75fr);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: left;
