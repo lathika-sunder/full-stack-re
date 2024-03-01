@@ -1,10 +1,15 @@
 import "./ScrapDealersDashboard.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaMoneyCheckAlt, FaPhone } from "react-icons/fa";
+import tickIcon from "./../../assets/icons/tick.svg"
+import crossIcon from "./../../assets/icons/cross.svg"
 import { IoMdContact } from "react-icons/io";
-import {Link} from 'react-router-dom'
-
+import { setCurrentScreen } from "firebase/analytics";
+import axios from "axios";
+import { Link } from "react-router-dom";
 const ScrapDealersDashboard = () => {
+  const base_url = "http://localhost:4040/api/v1";
+
   const tasks = [
     {
       id: 1,
@@ -20,17 +25,36 @@ const ScrapDealersDashboard = () => {
       status: "Approved",
     },
   ];
-  const notifications = [
-    { id: 6, description: "Interactive Design", status: "In Review" },
-    {
-      id: 7,
-      description: "Dashboard Design Implementation",
-      status: "Waiting",
-    },
-    { id: 8, description: "Create a userflow", status: "Waiting" },
-    { id: 9, description: "Application Implementation", status: "Waiting" },
-    { id: 10, description: "Create a Dashboard Design", status: "Waiting" },
-  ];
+  const [notifications, setNotification] = useState([]);
+
+  useEffect(
+    () => {
+      fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-requests").then((res) => res.json()).then((data) => setNotification(data))
+    }, [])
+
+  const handleTick = async (reqId) => {
+    const token = window.localStorage.getItem("token");
+    console.log("token: ", token);
+
+    fetch(`${base_url}/scrap-dealers/update-request`, {
+      method: "POST",
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      }, body: JSON.stringify({
+        requestId: reqId,
+        status: "accepted",
+      })
+    }).then((res) => res.json()).then((data) => console.log(data))
+      .catch((err) => console.log(err));
+
+  }
+
+  const handleCross = () => {
+    console.log("clicked!"); // console
+  }
+
+
   return (
     <div className="task-manager">
       <div className="page-content">
@@ -80,9 +104,16 @@ const ScrapDealersDashboard = () => {
               <label htmlFor={`item-${notifications.id}`}>
                 <span className="label-text">{notifications.description}</span>
               </label>
-              <span className={`tag ${notifications.status.toLowerCase()}`}>
-                {notifications.status}
+              <span className={`tag ${notifications.requestStatus.toLowerCase()}`}>
+                {notifications.requestStatus}
               </span>
+
+
+              <img src={tickIcon} className="icons" onClick={() => handleTick(notifications._id)} />
+              <img src={crossIcon} className="icons" onClick={handleCross} />
+
+              {/* <button onClick={() => console.log("Clicked")}>Accept</button>
+              <button onClick={() => console.log("Clicked Rejected")}>Reject</button> */}
             </div>
           ))}
         </div>
@@ -104,9 +135,7 @@ const ScrapDealersDashboard = () => {
           <div className="task-box blue">
             <div className="description-task">
               <div className="time"></div>
-              <Link to="http://localhost:5173/auction-website/admin">
-                <div className="task-name">Auction Status</div>
-              </Link>
+              <div className="task-name">Auction Status</div>
             </div>
             <div className="more-button"></div>
             <div className="members">

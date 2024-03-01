@@ -93,18 +93,18 @@ const RequestPickupComponent = () => {
             type="text"
             value={description}
             placeholder="description"
+            required
           />
           <p>Quantity</p>
           <div className="quantity-container">
-            <Button color="success" onClick={() => handleQuantityChange(-1)}>
-              -
-            </Button>
+            <Button color="success" onClick={() => handleQuantityChange(-1)}>-</Button>
             <input
               type="text"
               placeholder="Quantity"
               value={quantity}
               readOnly
               className="quantity-input"
+              required
             />
             <Button onClick={() => handleQuantityChange(1)}>+</Button>
           </div>
