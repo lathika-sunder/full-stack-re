@@ -1,50 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./NavbarComp.css";
-import { FaBars, FaTimes } from "react-icons/fa";
-import logoDark from "../../assets/images/revive-logo-dark.png"
-import { Link } from "react-router-dom";
+import '../NavbarComp/NavbarComp.css'
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
 const NavbarComp = () => {
 
-   
-  const [showResponsiveNav, setShowResponsiveNav] = useState(false);
-
-  const showNavbar = () => {
-    setShowResponsiveNav(!showResponsiveNav);
-  };
 
   return (
-    <>
-      <div className="header-container">
-      <img src={logoDark}/>
-
-        <nav className="navbar"  style={{ display: showResponsiveNav ? "none" : "" }}>
-          <Link to='/'>Home</Link>
-          <Link to='/sign-up'>Sign up</Link>
-          <Link to='/login'>Login</Link>
-          <Link to="/scrap-dealers">Scrap Dealers</Link>
-          <a href="/contact">Contact Us</a>
-        </nav>
-
-        <div className="responsive-navbar-container">
-        <button onClick={showNavbar} className="menubar-icon">
-            {showResponsiveNav ? <FaTimes /> : <FaBars />}
-          </button>
-        <nav
-          className="responsive-navbar"
-          style={{ display: showResponsiveNav ? "flex" : "none" }}
-        >
-          <Link to='/'>Home</Link>
-          <Link to='/sign-up'>Sign up</Link>
-          <Link to='/login'>Login</Link>
-          <Link to="/scrap-dealers">Scrap Dealers</Link>
-          <a href="/contact">Contact Us</a>
-          
-        </nav>
-       
+    
+    <div className="whole-container">
+    <nav>
+        <div>
+        
+            <ul className="nav-bar-container">
+                <img className='application-icon' src="src/assets/images/Favicon -revive.png" alt="Revive Logo" />
+                <li className="content-navbar"><Link to='/'>Home</Link></li>
+                <li className="content-navbar"><Link to='/sign-up'>Sign up</Link></li>
+                <li className="content-navbar"><Link to='/login'>Login</Link></li>
+                <li className="content-navbar"><Link to="/scrap-dealers">Scrap Dealers</Link></li>
+                <li className="content-navbar"><Link to="/recycle-plants">Recycle plants</Link></li>
+            </ul>
         </div>
-      </div>
-    </>
 
+    </nav>
+</div>
+      
+    
   )
 }
 
