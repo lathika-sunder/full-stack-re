@@ -42,7 +42,7 @@ const RequestHistoryComponent = () => {
 const RequestElements = ({ ele }) => {
     return (
         <div className="Container">
-            <div className="image-container">
+            {/* <div className="image-container">
                 {ele.image && ele.image.length > 0 && (
                     <img
                         style={{ padding: "10px" }}
@@ -52,10 +52,10 @@ const RequestElements = ({ ele }) => {
                         alt="Requested Item"
                     />
                 )}
-            </div>
+            </div> */}
             <div className="x">
                 <h2>{ele.description}</h2>
-                <p>Created at: {ele.selectedDateTime.toString()}</p>
+                <p>Created at: {ele.selectedDateTime}</p>
                 <p>
                     Tags :{" "}
                     {ele.tags.map((tag, index) => (

@@ -7,6 +7,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 .request-pickup-container p{
     font-family: sans-serif;
     
@@ -52,6 +53,10 @@
     max-width: 10px;
 
 
+}
+
+.x p{
+    margin: 2vh;
 }
 
 .quantity-head {
