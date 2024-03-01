@@ -25,6 +25,7 @@ const ScrapDealersDashboard = () => {
 
   const handleTick = () =>{
         const token = window.localStorage.getItem("token");
+        console.log(token);
         fetch(`${base_url}/scrap-dealers/change-request-status`,{
           method: "GET",
           headers: {
