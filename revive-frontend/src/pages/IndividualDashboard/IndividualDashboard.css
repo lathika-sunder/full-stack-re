@@ -7,13 +7,13 @@
 .individual-dashboard-content{
     display: flex;
     flex-direction: row;
-    
+    padding: 5vh;
 }
 
 .individual-dashboard{
     /* background-color: #C2E3B6; */
     height: 82vh;
-    margin: 0;
+    margin: 10vh;
     align-items: center;
     text-align: center;
 }
@@ -132,7 +132,11 @@
     background-color: #4c49ea;
   }
   
-  
+  .dashboard-img{
+    max-width: 50vh;
+    height: 53vh;
+    padding-right: 1vh;
+  }
   
   @media only screen and (max-width: 979px) {
     .ag-courses_item {

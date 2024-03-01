@@ -6,6 +6,10 @@
     
 }
 
+.Main_Container p{
+    padding:  1vh;
+}
+
 .waste-tags{
     background: rgba(108, 232, 116, 0.808);
 box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);
