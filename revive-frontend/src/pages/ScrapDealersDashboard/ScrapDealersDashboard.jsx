@@ -25,7 +25,19 @@ const ScrapDealersDashboard = () => {
 
   const handleTick = async (reqId) => {
     const token = window.localStorage.getItem("token");
-    console.log("token: ",token);
+    console.log("token: ", token);
+    
+    fetch(`${base_url}/scrap-dealers/update-request`, {
+      method: "POST",
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      }, body: JSON.stringify({
+        requestId: reqId,
+        status: "accepted",
+      })
+    }).then((res) => res.json()).then((data) => console.log(data))
+      .catch((err) => console.log(err));
 
     const data = {
       requestId: reqId,
