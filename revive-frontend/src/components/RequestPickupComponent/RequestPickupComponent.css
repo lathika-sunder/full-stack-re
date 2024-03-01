@@ -79,15 +79,55 @@
         background-color: #45a049;
       }
       
-      .order-summary-container {
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin-top: 20px;
-      }
       
-      .order-summary-container p {
-        font-size: 16px;
-        margin-bottom: 8px;
-      }
       
+ }
+ .order-summary-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.order-summary-container p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+ .order-pickup-summary{
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .container button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 1vh;
+    cursor: pointer;
+    
+    width: 20vh;
+  }
+  .buttons{
+    padding: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .container button:hover {
+    background-color: #45a049;
+  }
+  
+  .order-summary-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .order-summary-container p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
  }
