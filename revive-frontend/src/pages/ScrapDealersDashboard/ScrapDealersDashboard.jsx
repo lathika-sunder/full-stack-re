@@ -1,9 +1,13 @@
 import "./ScrapDealersDashboard.css";
 import React from "react";
 import { FaMoneyCheckAlt,  FaPhone } from "react-icons/fa";
+import tickIcon from "./../../assets/icons/tick.svg"
+import crossIcon from "./../../assets/icons/cross.svg"
 import { IoMdContact } from "react-icons/io";
 
 const ScrapDealersDashboard = () => {
+  const base_url = "http://localhost:4040/api/v1";
+
   const tasks = [
     { id: 1, description: "Dashboard Design Implementation", status: "Approved" },
     { id: 2, description: "Create a userflow", status: "In Progress" },
@@ -18,6 +22,23 @@ const ScrapDealersDashboard = () => {
     { id: 9, description: "Application Implementation", status: "Waiting" },
     { id: 10, description: "Create a Dashboard Design", status: "Waiting" },
   ];
+
+  const handleTick = () =>{
+        const token = window.localStorage.getItem("token");
+        fetch(`${base_url}/scrap-dealers/change-request-status`,{
+          method: "GET",
+          headers: {
+            'Authorization' : `${token}`,
+          }
+        }).then((res)=>res.json()).then((data)=>console.log(data));
+          
+  }
+
+  const handleCross = () =>{
+    console.log("clicked!");
+  }
+
+
   return (
     <div className="task-manager">
       <div className="page-content">
@@ -70,6 +91,13 @@ const ScrapDealersDashboard = () => {
               <span className={`tag ${notifications.status.toLowerCase()}`}>
                 {notifications.status}
               </span>
+
+
+              <img src={tickIcon} className="icons" onClick={handleTick}/>
+              <img src={crossIcon} className="icons" onClick={handleCross}/>
+              
+              {/* <button onClick={() => console.log("Clicked")}>Accept</button>
+              <button onClick={() => console.log("Clicked Rejected")}>Reject</button> */}
             </div>
           ))}
         </div>
@@ -91,7 +119,7 @@ const ScrapDealersDashboard = () => {
           <div className="task-box blue">
             <div className="description-task">
               <div className="time"></div>
-              <div className="task-name">Aucton Status</div>
+              <div className="task-name">Auction Status</div>
             </div>
             <div className="more-button"></div>
             <div className="members">
