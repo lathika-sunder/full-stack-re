@@ -1,10 +1,11 @@
 import "./ScrapDealersDashboard.css";
-import React from "react";
-import { FaMoneyCheckAlt,  FaPhone } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaMoneyCheckAlt, FaPhone } from "react-icons/fa";
 import tickIcon from "./../../assets/icons/tick.svg"
 import crossIcon from "./../../assets/icons/cross.svg"
 import { IoMdContact } from "react-icons/io";
-
+import { setCurrentScreen } from "firebase/analytics";
+import axios from "axios";
 const ScrapDealersDashboard = () => {
   const base_url = "http://localhost:4040/api/v1";
 
@@ -15,28 +16,69 @@ const ScrapDealersDashboard = () => {
     { id: 4, description: "Create a Dashboard Design", status: "In Progress" },
     { id: 5, description: "Create a Web Application Design", status: "Approved" },
   ];
-  const notifications = [
-    { id: 6, description: "Interactive Design", status: "In Review" },
-    { id: 7, description: "Dashboard Design Implementation", status: "Waiting" },
-    { id: 8, description: "Create a userflow", status: "Waiting" },
-    { id: 9, description: "Application Implementation", status: "Waiting" },
-    { id: 10, description: "Create a Dashboard Design", status: "Waiting" },
-  ];
+  const [notifications, setNotification] = useState([]);
 
-  const handleTick = () =>{
-        const token = window.localStorage.getItem("token");
-        console.log(token);
-        fetch(`${base_url}/scrap-dealers/change-request-status`,{
-          method: "GET",
-          headers: {
-            'Authorization' : `${token}`,
-          }
-        }).then((res)=>res.json()).then((data)=>console.log(data));
-          
+  useEffect(
+    () => {
+      fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-requests").then((res) => res.json()).then((data) => setNotification(data))
+    }, [])
+
+  const handleTick = async (reqId) => {
+    const token = window.localStorage.getItem("token");
+    console.log("token: ",token);
+
+    const data = {
+      requestId: reqId,
+      status: "accepted",
+    }
+
+
+    // fetch("http://localhost:4040/api/v1/scrap-dealers/update-request",{
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //      Authorization: `Bearer ${token}`,
+    //   },
+    //   body: JSON.stringify(data),
+    // }).then((res)=>res.json()).then((data)=>console.log(data));
+
+ 
+    // axios.post("http://localhost:4040/api/v1/scrap-dealers/update-request", {
+    //   data,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //      Authorization: `Bearer ${token}`,
+    //   },
+    // }
+    // ).then((res) => console.log(res.json())).then((data)=>console.log(data));
+
+  //   async function api_post() {
+  //     try {
+  //       const response = await fetch(`${base_url}/scrap-dealers/update-request`, {
+  //         method: 'POST',
+  //         body: {
+  //               requestId: `${reqId}`,
+  //               status: "accepted",
+  //             },
+  //       });
+    
+  //       if (!response.ok) {
+  //         throw new Error(`Error! status: ${response.status}`);
+  //       }
+    
+  //       const result = await response.json();
+  //       return result;
+  //     } 
+  //     catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+
+  //   console.log(api_post());
   }
 
-  const handleCross = () =>{
-    console.log("clicked!");
+  const handleCross = () => {
+    console.log("clicked!"); // console
   }
 
 
@@ -89,14 +131,14 @@ const ScrapDealersDashboard = () => {
               <label htmlFor={`item-${notifications.id}`}>
                 <span className="label-text">{notifications.description}</span>
               </label>
-              <span className={`tag ${notifications.status.toLowerCase()}`}>
-                {notifications.status}
+              <span className={`tag ${notifications.requestStatus.toLowerCase()}`}>
+                {notifications.requestStatus}
               </span>
 
 
-              <img src={tickIcon} className="icons" onClick={handleTick}/>
-              <img src={crossIcon} className="icons" onClick={handleCross}/>
-              
+              <img src={tickIcon} className="icons" onClick={() => handleTick(notifications._id)} />
+              <img src={crossIcon} className="icons" onClick={handleCross} />
+
               {/* <button onClick={() => console.log("Clicked")}>Accept</button>
               <button onClick={() => console.log("Clicked Rejected")}>Reject</button> */}
             </div>
@@ -105,7 +147,7 @@ const ScrapDealersDashboard = () => {
       </div>
       <div className="right-bar">
         <div className="top-part">
-        <IoMdContact/>
+          <IoMdContact />
         </div>
         <div className="header">Schedule</div>
         <div className="right-content">
@@ -113,8 +155,8 @@ const ScrapDealersDashboard = () => {
             <div className="description-task">
               <div className="task-name">Contact US</div>
               <div className="members">
-                  <FaPhone />
-                </div>
+                <FaPhone />
+              </div>
             </div>
           </div>
           <div className="task-box blue">

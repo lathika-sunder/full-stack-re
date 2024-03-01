@@ -11,8 +11,7 @@ const RequestHistoryComponent = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        axios
-            .get("http://localhost:4040/api/v1/individuals/pickup-history", {
+        axios.get("http://localhost:4040/api/v1/individuals/pickup-history", {
                 headers: {
                     Authorization: token,
                 },
@@ -59,7 +58,7 @@ const RequestElements = ({ ele }) => {
                 <p>
                     Tags :{" "}
                     {ele.tags.map((tag, index) => (
-                        <span className="waste-tags" key={index}>{tag}, </span>
+                        <span className="waste-tags" key={index}>{tag} </span>
                     ))}
                 </p>
                 <p>Quantity: {ele.quantity}</p>
