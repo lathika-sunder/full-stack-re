@@ -55,7 +55,7 @@ const RequestElements = ({ ele }) => {
             </div>
             <div className="x">
                 <h2>{ele.description}</h2>
-                <p>Created at: {ele.selectedDateTime.toString()}</p>
+                <p>Created at: {ele.selectedDateTime}</p>
                 <p>
                     Tags :{" "}
                     {ele.tags.map((tag, index) => (
