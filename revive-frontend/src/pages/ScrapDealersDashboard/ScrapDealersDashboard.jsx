@@ -8,29 +8,27 @@ import { setCurrentScreen } from "firebase/analytics";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+
+export const floatingWindow = () =>{
+  return(
+    <div>
+      Hey
+      <button onClick={()=>setToggle(!toggle)}>Close</button>
+    </div>
+  )
+}
+
 const ScrapDealersDashboard = () => {
   const base_url = "http://localhost:4040/api/v1";
 
-  const tasks = [
-    {
-      id: 1,
-      description: "Dashboard Design Implementation",
-      status: "Approved",
-    },
-    { id: 2, description: "Create a userflow", status: "In Progress" },
-    { id: 3, description: "Application Implementation", status: "In Review" },
-    { id: 4, description: "Create a Dashboard Design", status: "In Progress" },
-    {
-      id: 5,
-      description: "Create a Web Application Design",
-      status: "Approved",
-    },
-  ];
+  const [tasks,setTask] = useState([]);
   const [notifications, setNotification] = useState([]);
+  const [price,setPrice] = useState(0);
 
   useEffect(
     () => {
       fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-requests").then((res) => res.json()).then((data) => setNotification(data))
+      fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-accepted-requests").then((res) => res.json()).then((data) => setTask(data))
     }, [])
 
   const handleTick = async (reqId) => {
@@ -44,7 +42,7 @@ const ScrapDealersDashboard = () => {
         'Content-Type': 'application/json',
       }, body: JSON.stringify({
         requestId: reqId,
-        status: "accepted",
+        status: "Accepted",
       })
     }).then((res) => res.json()).then((data) => console.log(data)).then(toast.success("Accepted Request"))
       .catch((err) => console.log(err));
@@ -52,7 +50,12 @@ const ScrapDealersDashboard = () => {
   }
 
   const handleCross = () => {
-    console.log("clicked!"); // console
+    console.log("Clicked");
+  }
+
+  const handlePrompt = () =>{
+    let price_var = prompt("Enter the quotation: ");
+    setPrice(price_var);
   }
 
 
@@ -81,14 +84,16 @@ const ScrapDealersDashboard = () => {
                 name="task"
                 type="checkbox"
                 id={`item-${task.id}`}
-                checked={task.status !== "Waiting"}
+                checked={task.requestStatus !== "Waiting"}
               />
               <label htmlFor={`item-${task.id}`}>
                 <span className="label-text">{task.description}</span>
               </label>
-              <span className={`tag ${task.status.toLowerCase()}`}>
-                {task.status}
+              <span className={`tag ${task.requestStatus.toLowerCase()}`}>
+                {task.requestStatus}
               </span>
+              <button onClick={() => handlePrompt()}>Complete</button>
+
             </div>
           ))}
         </div>
