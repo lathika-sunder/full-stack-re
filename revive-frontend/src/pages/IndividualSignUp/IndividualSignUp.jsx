@@ -16,9 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-
 export default function IndividualSignUp() {
-
   const navigate = useNavigate();
   const [isOtpSent, setIsOtpSent] = React.useState(false);
   const [otp, setOtp] = React.useState("");
@@ -54,7 +52,7 @@ export default function IndividualSignUp() {
     } catch (error) {}
   };
 
-  const postData = (request,response) => {
+  const postData = (request, response) => {
     axios
       .post("http://localhost:4040/api/v1/individuals", formData)
       .then((response) => {
@@ -79,134 +77,134 @@ export default function IndividualSignUp() {
   };
 
   return (
-    <CssVarsProvider>
-      <ToastContainer />
-      <main>
-        <Sheet
-          sx={{
-            width: 300,
-            mx: "auto",
-            my: 8,
-            py: 3,
-            px: 6,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            borderRadius: "sm",
-            boxShadow: "md",
-          }}
-          variant="outlined"
-        >
-          {isOtpSent ? (
-            <div className="otp-verification">
-              <div className="verification-container">
-                <p className="otp-confirm-msg">
-                  Verify OTP for {formData.mobile}
-                </p>
-                <OtpInput
-                  value={otp}
-                  onChange={setOtp}
-                  numInputs={6}
-                  separator={<span> </span>}
-                  inputStyle="otp-input"
-                  renderInput={(props) => <input {...props} />}
-                  containerStyle="otp-container"
-                />
-                <Button color="success" onClick={verifyOTP}>
-                  <CgSpinner /> Verify OTP
-                </Button>
+    <div className="individual-signup">
+      <CssVarsProvider>
+        <ToastContainer />
+        <main>
+          <Sheet
+            sx={{
+              width: 300,
+              mx: "auto",
+              my: 0,
+              py: 3,
+              px: 6,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+         
+            border:"none",
+              backgroundColor:"#171717"
+            }}
+            variant="outlined"
+          >
+            {isOtpSent ? (
+              <div className="otp-verification">
+                <div className="verification-container">
+                  <p className="otp-confirm-msg">
+                    Verify OTP for {formData.mobile}
+                  </p>
+                  <OtpInput
+                    value={otp}
+                    onChange={setOtp}
+                    numInputs={6}
+                    separator={<span> </span>}
+                    inputStyle="otp-input"
+                    renderInput={(props) => <input {...props} />}
+                    containerStyle="otp-container"
+                  />
+                  <Button color="success" onClick={verifyOTP}>
+                    <CgSpinner /> Verify OTP
+                  </Button>
+                </div>
               </div>
-            </div>
-          ) : (
-            <div>
+            ) : (
               <div>
-                <Typography level="h4" component="h1">
-                  <b>Welcome!</b>
-                </Typography>
-                <Typography level="body-sm">
-                  Create an account to start.
-                </Typography>
-              </div>
-              <form onSubmit={handleSubmit}>
-                <FormControl>
-                  <FormLabel>Name</FormLabel>
-                  <Input
-                    name="name"
-                    type="text"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="johndoe@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Mobile</FormLabel>
-                  <Input
-                    name="mobile"
-                    type="phone"
-                    placeholder="XXXXXXXXXXX"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    required
-                    minLength={10}
-                  />
-                </FormControl>
+                <div>
+                  <Typography level="h4" component="h1">
+                    <b>Welcome!</b>
+                  </Typography>
+                  <Typography level="body-sm">
+                    Create an account to start.
+                  </Typography>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <FormControl>
+                    <FormLabel>Name</FormLabel>
+                    <input
+                      name="name"
+                      type="text"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Email</FormLabel>
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="johndoe@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Mobile</FormLabel>
+                    <input
+                      name="mobile"
+                      type="phone"
+                      placeholder="XXXXXXXXXXX"
+                      value={formData.mobile}
+                      onChange={handleChange}
+                      required
+                      minLength={10}
+                    />
+                  </FormControl>
 
-                <FormControl>
-                  <FormLabel>Password</FormLabel>
-                  <Input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    minLength={6}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Address</FormLabel>
-                  <Input
-                    name="address"
-                    type="text"
-                    placeholder="Your Address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
+                  <FormControl>
+                    <FormLabel>Password</FormLabel>
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      minLength={6}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Address</FormLabel>
+                    <input
+                      name="address"
+                      type="text"
+                      placeholder="Your Address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
 
-                <Button
-                  type="submit"
-                  sx={{ mt: 1, textAlign: "center", backgroundColor: "green" }}
-                  onSubmit={handleSubmit}
+                  <button className="btn-primary"
+                  >
+                    Sign Up
+                  </button>
+                </form>
+                <Typography
+                  endDecorator={<Link href="/login">Log in</Link>}
+                  fontSize="sm"
+                  sx={{ alignSelf: "center" }}
                 >
-                  Sign Up
-                </Button>
-              </form>
-              <Typography
-                endDecorator={<Link href="/login">Log in</Link>}
-                fontSize="sm"
-                sx={{ alignSelf: "center" }}
-              >
-                Already have an account?
-              </Typography>
-              <div id="recaptcha-container"></div>
-            </div>
-          )}
-        </Sheet>
-      </main>
-    </CssVarsProvider>
+                  Already have an account?
+                </Typography>
+                <div id="recaptcha-container"></div>
+              </div>
+            )}
+          </Sheet>
+        </main>
+      </CssVarsProvider>
+    </div>
   );
 }

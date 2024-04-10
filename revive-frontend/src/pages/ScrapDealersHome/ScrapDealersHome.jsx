@@ -2,6 +2,7 @@ import "./ScrapDealersHome.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import recycleBin from '../../assets/images/recycle-bin.png';
 
 const ScrapDealersHome = () => {
   const navigate = useNavigate();
@@ -109,7 +110,7 @@ const ScrapDealersHome = () => {
               </button>
             </div>
             <img
-              src="https://cdni.iconscout.com/illustration/premium/thumb/man-waste-and-throwing-money-9496840-7746442.png"
+              src={recycleBin}
               className="image"
               alt=""
             />

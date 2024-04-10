@@ -1,0 +1,28 @@
+.login-form {
+  color: white;
+  font-size: larger;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+.recaptcha-container{
+    padding-top: 2vh;
+}
+
+  h1 {
+    color: white;
+    font-size: 12vh;
+  }
+  p {
+    color: white;
+  }
+  input {
+    background-color: #171717;
+    border: none;
+    color: white;
+    padding: 1vh;
+  }
+  input:hover {
+    border-bottom: 1vh white;
+  }
+}

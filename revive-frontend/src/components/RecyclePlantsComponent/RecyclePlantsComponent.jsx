@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../RecyclePlantsComponent/RecyclePlantsComponent.css'
+import './RecyclePlantsComponent.css'
 import { useNavigate ,Link} from 'react-router-dom';
 
 const RecyclePlantsComponent = () => {
@@ -10,7 +10,7 @@ const RecyclePlantsComponent = () => {
     const navigate= useNavigate();
 
     return (
-        <div className="whole-container home-page">
+        <div className="whole-container recycle-plants-landing">
 
             <section>
                 <div className="image-container">
@@ -22,15 +22,19 @@ const RecyclePlantsComponent = () => {
                 </div>
                 <div className="content-container">
                     <h1>
-                        <div className="line-one"><img className="differentiate-e" src="src/assets/images/Favicon -revive.png" alt="Revive Logo" />cycle Riches: Your Discards,</div>
+                        <div className="line-one"><img className="differentiate-e" src="src/assets/images/revive-favicon.jpg" alt="Revive Logo" />cycle Riches: Your Discards,<br/>
+                        that's our Niches
+                        </div>
                     </h1>
-                    <h1>
-                        <div className="line-two">that's our Niches</div>
-                    </h1>
+                   
                     <h3 className="theory">
                         Sell your E-waste and be a catalyst for a sustainable future
                     </h3>
-                    <Link to="http://localhost:5174/auction-website/admin" className='mui-btn'><h1>Join auction!</h1></Link>
+                    <div className="row">
+                    <Link to="http://localhost:5173/auction-website/admin" className='btn-primary'>Join auction!</Link>
+                    
+                    <Link to="/sign-up/recycle-plants" className='btn-secondary'>Sign Up!</Link>
+                    </div>
                 </div>
             </section>
         </div>

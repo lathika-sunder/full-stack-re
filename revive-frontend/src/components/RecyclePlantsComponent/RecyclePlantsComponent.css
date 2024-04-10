@@ -1,20 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700&family=Roboto&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700&family=Roboto:wght@400;700&display=swap');
-.nav-bar-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    color: black;
-    /* padding-top: 5px; */
-    padding-bottom: 15px;
-    justify-content: start;
-    align-items: center;
-    font-family: 'Mukta', sans-serif;
-    font-family: 'Roboto', sans-serif;
-    list-style: none;
-    font-size: larger;
-    
-}
+
 
 .application-icon{
     display: flex;
@@ -24,11 +8,23 @@
     padding-top: 20px;
     padding-left: 36px;
     padding-right:450px; 
-    /* display: flex;
-    justify-content: baseline;
-    justify-content: flex-start; */
+
     
 }
+
+.recycle-plants-landing{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .image-container{
+
+        justify-content: center;
+        padding:20px;
+        padding-left: 80px;
+        padding-right:80px;
+    }
+}
+
 a{
     text-decoration: none;
     color: black;
@@ -47,21 +43,13 @@ a:hover{
     list-style: none;
 }
 .image-Ewaste{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 500px;
+   
+    
+    height: 40vh;
     border-radius:10px;
     
 }
-.image-container{
 
-    justify-content: center;
-    padding:20px;
-    padding-left: 80px;
-    padding-right:80px;
-}
 
 .content-container{
     display: flex;
@@ -74,38 +62,12 @@ a:hover{
     font-size: 70px;
     display: flex;
     justify-content: baseline;
-    align-items: center;
-    font-family: 'Mukta', sans-serif;
-    font-family: 'Roboto', sans-serif;  
+    
+    font-family:Arial, Helvetica, sans-serif ;  
 }
 
-.line-two{
-    font-size: 70px;
-    font-family: 'Mukta', sans-serif;
-    font-family: 'Roboto', sans-serif; 
-}
 
-.mui-btn{
-    margin-top: 20px;
-    background-color: #00BE00;
-    color: white;
-    border-radius: 18px;
-    border-color: #00BE00;
-    /* font-family: 'Mukta', sans-serif; */
-    font-family: 'Roboto', sans-serif; 
-    text-align: center;
-    margin-bottom: 30px;
-    padding-left: 28px;
-    padding-right: 28px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-}
 
- .theory{
-    font-family: 'Mukta', sans-serif;
-    font-family: 'Roboto', sans-serif; 
-    font-size: larger;
- }
 
  .differentiate-e{
     width: 90px;

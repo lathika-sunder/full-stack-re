@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
   outline: none;
+  
 }
 
 :root {
-  --bg-color: #f5f8ff;
-  --main-color: #22222d;
+  --bg-color: #171717;
+  --main-color: #fff;
   --secondary-color: #8e92a4;
   --main-text-color: #5d606b;
   --secondary-dark-color: #9496a5;
@@ -47,9 +48,10 @@ button {
   justify-content: space-between;
   width: 100%;
 
-  height: 83vh;
+  height: 100vh;
   max-height: 900px;
-  background: #fff;
+  background: #171717;
+  color: #fff;
   border-radius: 4px;
   box-shadow: 0 0.3px 2.2px rgba(0, 0, 0, 0.011),
     0 0.7px 5.3px rgba(0, 0, 0, 0.016), 0 1.3px 10px rgba(0, 0, 0, 0.02),
@@ -125,7 +127,7 @@ button {
 
     .header {
       font-size: 20px;
-      color: var(--main-text-color);
+      color: #fff;
       margin-left: 30px;
     }
   }
@@ -236,7 +238,7 @@ button {
 
     .header {
       font-size: 26px;
-      color: var(--main-color);
+      color:#fff;
       margin-top: 30px;
     }
   }
@@ -281,10 +283,12 @@ button {
     justify-content: space-between;
     height: 100%;
   }
-
+  .btns{
+    
+  }
   .task {
     display: flex;
-
+    justify-content: space-between;
     padding-left: 1vh;
     justify-items: start;
     color: var(--task-color);
@@ -404,5 +408,11 @@ button {
 
   .category {
     padding: 20px;
+  }
+}
+
+.task-manager{
+  .header{
+    color: #fff;
   }
 }

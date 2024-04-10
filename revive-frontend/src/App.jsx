@@ -22,12 +22,15 @@ import '../src/components/RecyclePlantsComponent/RecyclePlantsComponent'
 import RecyclePlantsComponent from "../src/components/RecyclePlantsComponent/RecyclePlantsComponent";
 import RecyclePlantSignUp from "./pages/RecyclePlantSignUp/RecyclePlantSignUp";
 import EnterpriserequestComp from "./components/EnterpriseRequestComp/EnterpriserequestComp";
+import CompletedTransactionsIndividuals from "./pages/CompletedTransactionsIndividuals/CompletedTransactionsIndividuals";
+import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
+
 
 const queryClient = new QueryClient();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isScrapDealerRoute, setIsScrapDealerRoute] = useState(false);
+ 
  
 
   useEffect(() => {
@@ -36,17 +39,12 @@ function App() {
     return () => clearTimeout(timer);
   }, [window.location.pathname]);
 
-  useEffect(() => {
-    
-    setIsScrapDealerRoute(
-      window.location.pathname === "/scrap-dealers" 
-    );
-  }, [window.location.pathname]);
+
 
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        {!isScrapDealerRoute && <NavbarComp />}
+        <NavbarComp/>
         {isLoading ? (
           <Preloader />
         ) : (
@@ -72,6 +70,11 @@ function App() {
               exact
               path="/sign-up/recycle-plants"
               element={<RecyclePlantSignUp />}
+            />
+            <Route
+              exact
+              path="/checkout"
+              element={<CheckOutPage />}
             />
             <Route
               exact
@@ -101,6 +104,11 @@ function App() {
               exact
               path="/scrap-dealers"
               element={<ScrapDealersHome />}
+            />
+            <Route
+              exact
+              path="/completed-transactions/individual"
+              element={<CompletedTransactionsIndividuals />}
             />
             <Route
               exact

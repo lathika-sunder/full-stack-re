@@ -3,15 +3,18 @@
     text-decoration: underline;
     margin: 0;
  }
-
+.title-container h1{
+  font-size: 8vh;
+}
 .individual-dashboard-content{
     display: flex;
     flex-direction: row;
     padding: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .individual-dashboard{
-    /* background-color: #C2E3B6; */
+
     height: 82vh;
     margin: 10vh;
     align-items: center;
@@ -35,7 +38,6 @@
     align-items: flex-start;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    background-color: #000000;
     padding: 2vh;
     border-radius: 3vh;
   }
@@ -52,14 +54,13 @@
   .ag-courses-item_link {
     display: block;
     padding: 30px 20px;
-    /* background-color: #121212; */
-  
+
     overflow: hidden;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.75);
+    /* backdrop-filter: blur(16px) saturate(180%); */
+    /* -webkit-backdrop-filter: blur(16px) saturate(180%); */
+    /* background-color: rgba(17, 25, 40, 0.75); */
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    /* border: 1px solid rgba(255, 255, 255, 0.125); */
     position: relative;
   }
   .ag-courses-item_link:hover,
@@ -94,7 +95,7 @@
   }
   .ag-courses-item_date {
     font-weight: bold;
-    color: #f9b234;
+    color: #e8df55;
   
     -webkit-transition: color .5s ease;
     -o-transition: color .5s ease;
@@ -103,34 +104,23 @@
   .ag-courses-item_bg {
     height: 128px;
     width: 128px;
-    background-color: #44F934;
+    background-color: #00bf00;
   
     z-index: 1;
     position: absolute;
     top: -75px;
     right: -75px;
-  
-    border-radius: 50%;
-  
     -webkit-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
   }
   .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
-    background-color: #3ecd5e;
+    background-color: #abda33dd;
   }
   .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
     background-color: #8AE402;
   }
-  .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
-    background-color: #952aff;
-  }
-  .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
-    background-color: #cd3e94;
-  }
-  .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
-    background-color: #4c49ea;
-  }
+
   
   .dashboard-img{
     max-width: 50vh;

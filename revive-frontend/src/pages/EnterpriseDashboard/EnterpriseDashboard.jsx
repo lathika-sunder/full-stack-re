@@ -2,7 +2,7 @@
 import "./EnterpriseDashboard.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import globeGreen from "../../assets/images/dashboard-img.png";
+import globeGreen from "../../assets/images/dashboard-img-e.png";
 import { Link } from "react-router-dom";
 
 const EnterpriseDashboard = () => {
@@ -45,8 +45,8 @@ const EnterpriseDashboard = () => {
               <div className="ag-courses-item_title">Sell Waste</div>
 
               <div className="ag-courses-item_date-box">
-                Start:
-                <span className="ag-courses-item_date">04.11.2022</span>
+                Upload
+                <span className="ag-courses-item_date"> Waste Details</span>
               </div>
             </Link>
           </div>

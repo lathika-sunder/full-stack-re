@@ -1,35 +1,46 @@
 import "./ScrapDealersDashboard.css";
 import React, { useEffect, useState } from "react";
 import { FaMoneyCheckAlt, FaPhone } from "react-icons/fa";
-import tickIcon from "./../../assets/icons/tick.svg"
-import crossIcon from "./../../assets/icons/cross.svg"
+import tickIcon from "./../../assets/icons/tick.svg";
+import crossIcon from "./../../assets/icons/cross.svg";
 import { IoMdContact } from "react-icons/io";
+import Button from '@mui/material/Button'
 import { setCurrentScreen } from "firebase/analytics";
 import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe("pk_test_51OpkbkSIhC4KUlo2ypJGhU7yjmJ8z2nxXB43dObBsbqNF0X643TXVykNyeQX1BeFoUn5Rixf8YNFUCXu5AqlR2Kv00UZZIqX6e");
+
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import CheckOutPage from "../CheckOutPage/CheckOutPage";
 
-export const floatingWindow = () =>{
-  return(
+export const floatingWindow = () => {
+  return (
     <div>
       Hey
-      <button onClick={()=>setToggle(!toggle)}>Close</button>
+      <button onClick={() => setToggle(!toggle)}>Close</button>
     </div>
-  )
-}
+  );
+};
 
 const ScrapDealersDashboard = () => {
+  
   const base_url = "http://localhost:4040/api/v1";
-
-  const [tasks,setTask] = useState([]);
+  const [tasks, setTask] = useState([]);
   const [notifications, setNotification] = useState([]);
-  const [price,setPrice] = useState(0);
+  const [price, setPrice] = useState(0);
 
-  useEffect(
-    () => {
-      fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-requests").then((res) => res.json()).then((data) => setNotification(data))
-      fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-accepted-requests").then((res) => res.json()).then((data) => setTask(data))
-    }, [])
+  useEffect(() => {
+    fetch("http://localhost:4040/api/v1/scrap-dealers/get-all-requests")
+      .then((res) => res.json())
+      .then((data) => setNotification(data));
+    fetch(
+      "http://localhost:4040/api/v1/scrap-dealers/get-all-accepted-requests"
+    )
+      .then((res) => res.json())
+      .then((data) => setTask(data));
+  }, []);
 
   const handleTick = async (reqId) => {
     const token = window.localStorage.getItem("token");
@@ -38,30 +49,38 @@ const ScrapDealersDashboard = () => {
     fetch(`${base_url}/scrap-dealers/update-request`, {
       method: "POST",
       headers: {
-        'Authorization': token,
-        'Content-Type': 'application/json',
-      }, body: JSON.stringify({
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         requestId: reqId,
         status: "Accepted",
-      })
-    }).then((res) => res.json()).then((data) => console.log(data)).then(toast.success("Accepted Request"))
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .then(toast.success("Accepted Request"))
       .catch((err) => console.log(err));
-
-  }
+  };
 
   const handleCross = () => {
     console.log("Clicked");
-  }
+  };
 
-  const handlePrompt = () =>{
+  const handlePrompt = () => {
     let price_var = prompt("Enter the quotation: ");
     setPrice(price_var);
-  }
+    makePayment(price_var)
+  };
 
+  const makePayment=async()=>{
+
+  }
 
   return (
     <div className="task-manager">
-      <ToastContainer/>
+      
+      <ToastContainer />
       <div className="page-content">
         <div className="header">Schedule - Today Tasks</div>
         <div className="content-categories">
@@ -89,42 +108,50 @@ const ScrapDealersDashboard = () => {
               <label htmlFor={`item-${task.id}`}>
                 <span className="label-text">{task.description}</span>
               </label>
-              <span className={`tag ${task.requestStatus.toLowerCase()}`}>
-                {task.requestStatus}
-              </span>
-              <button onClick={() => handlePrompt()}>Complete</button>
-
+              <div className="btns">
+                <span className={`tag ${task.requestStatus.toLowerCase()}`}>
+                  {task.requestStatus}
+                </span>
+                <a href="http://localhost:3000" target="__blank"> <Button>Complete</Button></a>
+              </div>
             </div>
           ))}
         </div>
         <div className="notification-container">
-        <div className="header">Notifications</div>
-        <div className="tasks-wrapper notifications">
-          {notifications.map((notifications) => (
-            <div className="task" key={notifications.id}>
-              <input
-                className="task-item"
-                name="notifications"
-                type="checkbox"
-                id={`item-${notifications.id}`}
-                checked={notifications.status !== "Waiting"}
-              />
-              <label htmlFor={`item-${notifications.id}`}>
-                <span className="label-text">{notifications.description}</span>
-              </label>
-              <span className={`tag ${notifications.requestStatus.toLowerCase()}`}>
-                {notifications.requestStatus}
-              </span>
+          <div className="header">Notifications</div>
+          <div className="tasks-wrapper notifications">
+            {notifications.map((notifications) => (
+              <div className="task" key={notifications.id}>
+                <input
+                  className="task-item"
+                  name="notifications"
+                  type="checkbox"
+                  id={`item-${notifications.id}`}
+                  checked={notifications.status !== "Waiting"}
+                />
+                <label htmlFor={`item-${notifications.id}`}>
+                  <span className="label-text">
+                    {notifications.description}
+                  </span>
+                </label>
+                <span
+                  className={`tag ${notifications.requestStatus.toLowerCase()}`}
+                >
+                  {notifications.requestStatus}
+                </span>
 
+                <img
+                  src={tickIcon}
+                  className="icons"
+                  onClick={() => handleTick(notifications._id)}
+                />
+                <img src={crossIcon} className="icons" onClick={handleCross} />
 
-              <img src={tickIcon} className="icons" onClick={() => handleTick(notifications._id)} />
-              <img src={crossIcon} className="icons" onClick={handleCross} />
-
-              {/* <button onClick={() => console.log("Clicked")}>Accept</button>
+                {/* <button onClick={() => console.log("Clicked")}>Accept</button>
               <button onClick={() => console.log("Clicked Rejected")}>Reject</button> */}
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className="right-bar">

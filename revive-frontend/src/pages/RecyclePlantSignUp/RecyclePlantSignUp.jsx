@@ -99,7 +99,8 @@ const RecyclePlantSignUp = () => {
     };
   
     return (
-      <CssVarsProvider>
+      <div className="recycle-plant-signup">
+        <CssVarsProvider>
         <ToastContainer />
         <main>
           <Sheet
@@ -112,11 +113,9 @@ const RecyclePlantSignUp = () => {
               display: "flex",
               flexDirection: "column",
               gap: 2,
-              borderRadius: "sm",
-              boxShadow: "md",
-              backgroundColor: "#DEF3D7",
+              color:"#fff",
+              backgroundColor: "#171717",
             }}
-            variant="outlined"
           >
             {isOtpSent ? (
               <div className="enterprise-verification">
@@ -147,7 +146,7 @@ const RecyclePlantSignUp = () => {
                     <form onSubmit={verifyGST}>
                       <FormControl>
                         <FormLabel>GST Number</FormLabel>
-                        <Input
+                        <input
                           name="gstNumber"
                           type="text"
                           value={formData.gstNumber}
@@ -174,7 +173,7 @@ const RecyclePlantSignUp = () => {
                 <form onSubmit={handleSubmit}>
                   <FormControl>
                     <FormLabel>Company Name</FormLabel>
-                    <Input
+                    <input
                       name="companyName"
                       type="text"
                       placeholder="Your Company's Name"
@@ -185,7 +184,7 @@ const RecyclePlantSignUp = () => {
                   </FormControl>
                   <FormControl>
                     <FormLabel>Applicant Name</FormLabel>
-                    <Input
+                    <input
                       name="applicantName"
                       type="text"
                       placeholder="Your Name"
@@ -196,7 +195,7 @@ const RecyclePlantSignUp = () => {
                     <FormLabel>Applicant Role</FormLabel>
                   </FormControl>
                   <FormControl>
-                    <Input
+                    <input
                       name="applicantRole"
                       type="text"
                       placeholder="Your Role"
@@ -207,7 +206,7 @@ const RecyclePlantSignUp = () => {
                   </FormControl>
                   <FormControl>
                     <FormLabel>Email</FormLabel>
-                    <Input
+                    <input
                       name="email"
                       type="email"
                       placeholder="johndoe@example.com"
@@ -218,7 +217,7 @@ const RecyclePlantSignUp = () => {
                   </FormControl>
                   <FormControl>
                     <FormLabel>Mobile</FormLabel>
-                    <Input
+                    <input
                       name="mobile"
                       type="phone"
                       placeholder="XXXXXXXXXXX"
@@ -230,7 +229,7 @@ const RecyclePlantSignUp = () => {
   
                   <FormControl>
                     <FormLabel>Password</FormLabel>
-                    <Input
+                    <input
                       name="password"
                       type="password"
                       placeholder="Password"
@@ -241,7 +240,7 @@ const RecyclePlantSignUp = () => {
                   </FormControl>
                   <FormControl>
                     <FormLabel>Address</FormLabel>
-                    <Input
+                    <input
                       name="address"
                       type="text"
                       placeholder="Your Address"
@@ -251,13 +250,14 @@ const RecyclePlantSignUp = () => {
                     />
                   </FormControl>
   
-                  <Button
+                  <button
                     type="submit"
+                    className='btn-primary'
                     sx={{ mt: 1, textAlign: "center", backgroundColor: "green" }}
                     onSubmit={handleSubmit}
                   >
                     Sign Up
-                  </Button>
+                  </button>
                 </form>
                 <Typography
                   endDecorator={<Link href="/login">Log in</Link>}
@@ -271,7 +271,9 @@ const RecyclePlantSignUp = () => {
             )}
           </Sheet>
         </main>
-      </CssVarsProvider>)
+      </CssVarsProvider>
+      </div>
+    )
 }
 
 export default RecyclePlantSignUp

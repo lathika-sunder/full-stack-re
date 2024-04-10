@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import axios from "axios";
+import { RiFileUploadLine } from "react-icons/ri";
 
 const RequestPickupComponent = () => {
   const [electricProducts, setElectricProducts] = useState([]);
@@ -50,7 +51,6 @@ const RequestPickupComponent = () => {
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
       },
-
     });
   };
 
@@ -72,114 +72,111 @@ const RequestPickupComponent = () => {
       <h1>Request a Pickup</h1>
       {!showSummary ? (
         <>
-          <div className="image-container">
-            <p>Upload Image</p>
-            {Array.from(image).map((item, index) => (
-              <span key={index}>
-                <img
-                  style={{ padding: "10px" }}
-                  width={150}
-                  height={100}
-                  src={item ? URL.createObjectURL(item) : null}
-                  alt={`Product ${index + 1}`}
+          <div className="form-container">
+            <div className="column">
+              <div className="image-container">
+                <div className="file-input">
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    className="visually-hidden" // Visually hide the input
+                  />
+                  <label htmlFor="image-upload" className="file-label">
+                    <RiFileUploadLine size={24} />
+                    <span>Click to Upload Image</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="input-container">
+                <p>Description</p>
+                <textarea
+                  onChange={(e) => setDescription(e.target.value)}
+                  type="text"
+                  value={description}
+                  placeholder="Describe your waste(optional)..."
+                  required
+                  className="description-input"
                 />
-              </span>
-            ))}
+              </div>
+
+              <div className="input-container">
+                <p>Quantity</p>
+                <div className="quantity-container">
+                  <Button
+                    color="success"
+                    onClick={() => handleQuantityChange(-1)}
+                    className="btn-primary"
+                  >
+                    -
+                  </Button>
+                  <input
+                    type="text"
+                    placeholder="Quantity"
+                    value={quantity}
+                    readOnly
+                    className="quantity-input"
+                    required
+                  />
+                  <Button
+                    onClick={() => handleQuantityChange(1)}
+                    color="success"
+                    className="btn-primary"
+                  >
+                    +
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="column">
+              <div className="input-container">
+                <p>Category</p>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={electricProducts}
+                  onChange={(event, value) =>
+                    setTags((prevData) => [...prevData, value.label])
+                  }
+                  isOptionEqualToValue={(option, value) =>
+                    option.label === value.label
+                  }
+                  className="category-input"
+                  
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </div>
+              <div className="input-container">
+                <p>Address</p>
+                <textarea
+                  onChange={(e) => setAddress(e.target.value)}
+                  type="text"
+                  value={address}
+                  placeholder="Address"
+                />
+              </div>
+              
+              <div className="date-picker-container">
+              <p>Pickup date <br/>& time </p>
+                <DatePicker
+                  selected={selectedDateTime}
+                  onChange={handleTimeChange}
+                  className="custom-date-picker"
+                  showTimeSelect
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                />
+              </div>
+            </div>
           </div>
-          <input onChange={handleImageChange} multiple type="file" />
-          <p>Description</p>
-          <input
-            onChange={(e) => setDescription(e.target.value)}
-            type="text"
-            value={description}
-            placeholder="description"
-            required
-          />
-          <p>Quantity</p>
-          <div className="quantity-container">
-            <Button color="success" onClick={() => handleQuantityChange(-1)}>-</Button>
-            <input
-              type="text"
-              placeholder="Quantity"
-              value={quantity}
-              readOnly
-              className="quantity-input"
-              required
-            />
-            <Button onClick={() => handleQuantityChange(1)}>+</Button>
-          </div>
-          <p>Category</p>
-          <Autocomplete
-            style={{ border: "0" }}
-            id="include-input-in-list"
-            includeInputInList
-            onChange={(event, value) =>
-              setTags((prevData) => [...prevData, value.label])
-            }
-            options={electricProducts}
-            isOptionEqualToValue={(option, value) =>
-              option.label === value.label
-            }
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={electricProducts}
-            onChange={(event, value) =>
-              setTags((prevData) => [...prevData, value.label])
-            }
-            isOptionEqualToValue={(option, value) =>
-              option.label === value.label
-            }
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={electricProducts}
-            onChange={(event, value) =>
-              setTags((prevData) => [...prevData, value.label])
-            }
-            isOptionEqualToValue={(option, value) =>
-              option.label === value.label
-            }
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={electricProducts}
-            onChange={(event, value) =>
-              setTags((prevData) => [...prevData, value.label])
-            }
-            isOptionEqualToValue={(option, value) =>
-              option.label === value.label
-            }
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <p>Address</p>
-          <input
-            onChange={(e) => setAddress(e.target.value)}
-            type="text"
-            value={address}
-            placeholder="Address"
-          />
-          <p>Choose Pickup date & time slot</p>
-          <div className="date-picker-container">
-            <DatePicker
-              selected={selectedDateTime}
-              onChange={handleTimeChange}
-              showTimeSelect
-              dateFormat="MMMM d, yyyy h:mm aa"
-            />
-          </div>
+
           <br />
 
           <form className="container" onSubmit={() => navigate("/proceed")}>
-            <Button variant="contained" color="success" onClick={handleSubmit}>
+            <button className="btn-primary" onClick={handleSubmit}>
               Proceed
-            </Button>
+            </button>
           </form>
         </>
       ) : (

@@ -47,10 +47,7 @@ export default function EnterpriseSignUp() {
     try {
       // const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
       console.log(formData);
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        formData.mobile
-      );
+      const confirmation = await signInWithPhoneNumber(auth, formData.mobile);
       if (confirmation) setIsOtpSent(true);
       setUser(confirmation);
     } catch (error) {
@@ -87,10 +84,8 @@ export default function EnterpriseSignUp() {
         console.log("GST Verified");
         postData();
         navigate("/login");
-        
       } else {
         toast.error("GST ID Incorrect.Try again");
-        
       }
     } catch (error) {
       console.log(error);
@@ -98,178 +93,185 @@ export default function EnterpriseSignUp() {
   };
 
   return (
-    <CssVarsProvider>
-      <ToastContainer />
-      <main>
-        <Sheet
-          sx={{
-            width: 300,
-            mx: "auto",
-            my: 8,
-            py: 3,
-            px: 6,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            borderRadius: "sm",
-            boxShadow: "md",
-            backgroundColor: "#DEF3D7",
-          }}
-          variant="outlined"
-        >
-          {isOtpSent ? (
-            <div className="enterprise-verification">
-              <h1>Let us verify you...</h1>
+    <div className="enterprise-signup">
+      <CssVarsProvider>
+        <ToastContainer />
+        <main>
+          <Sheet
+            sx={{
+              width: 300,
+              mx: "auto",
+              my: 0,
+              py: 0,
+              px: 6,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+             
+              border:"none",
+              backgroundColor: "#171717",
+            }}
+            variant="outlined"
+          >
+            {isOtpSent ? (
+              <div className="enterprise-verification">
+                <h1>Let us verify you...</h1>
 
-              {!isOtpVerified ? (
-                <div className="otp-verification">
-                  <div className="verification-container">
-                    <p className="otp-confirm-msg">
-                      Verify OTP for {formData.mobile}
-                    </p>
-                    <OtpInput
-                      value={otp}
-                      onChange={setOtp}
-                      numInputs={6}
-                      separator={<span> </span>}
-                      inputStyle="otp-input"
-                      renderInput={(props) => <input {...props} />}
-                      containerStyle="otp-container"
-                    />
-                    <Button color="success" onClick={verifyOTP}>
-                      <CgSpinner /> Verify OTP
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div className="gst-verification">
-                  <form onSubmit={verifyGST}>
-                    <FormControl>
-                      <FormLabel>GST Number</FormLabel>
-                      <Input
-                        name="gstNumber"
-                        type="text"
-                        value={formData.gstNumber}
-                        onChange={handleChange}
+                {!isOtpVerified ? (
+                  <div className="otp-verification">
+                    <div className="verification-container">
+                      <p className="otp-confirm-msg">
+                        Verify OTP for {formData.mobile}
+                      </p>
+                      <OtpInput
+                        value={otp}
+                        onChange={setOtp}
+                        numInputs={6}
+                        separator={<span> </span>}
+                        inputStyle="otp-input"
+                        renderInput={(props) => <input {...props} />}
+                        containerStyle="otp-container"
                       />
-                      <Button onClick={verifyGST}>
-                        <FaCheck /> Verify GST
+                      <Button color="success" onClick={verifyOTP}>
+                        <CgSpinner /> Verify OTP
                       </Button>
-                    </FormControl>
-                  </form>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div>
-              <div>
-                <Typography level="h4" component="h1">
-                  <b>Welcome!</b>
-                </Typography>
-                <Typography level="body-sm">
-                  Create an account to start.
-                </Typography>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="gst-verification">
+                    <form onSubmit={verifyGST}>
+                      <FormControl>
+                        <FormLabel>GST Number</FormLabel>
+                        <input
+                          name="gstNumber"
+                          type="text"
+                          value={formData.gstNumber}
+                          onChange={handleChange}
+                        />
+                        <Button onClick={verifyGST}>
+                          <FaCheck /> Verify GST
+                        </Button>
+                      </FormControl>
+                    </form>
+                  </div>
+                )}
               </div>
-              <form onSubmit={handleSubmit}>
-                <FormControl>
-                  <FormLabel>Company Name</FormLabel>
-                  <Input
-                    name="companyName"
-                    type="text"
-                    placeholder="Your Company's Name"
-                    value={formData.companyName}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Applicant Name</FormLabel>
-                  <Input
-                    name="applicantName"
-                    type="text"
-                    placeholder="Your Name"
-                    value={formData.applicantName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <FormLabel>Applicant Role</FormLabel>
-                </FormControl>
-                <FormControl>
-                  <Input
-                    name="applicantRole"
-                    type="text"
-                    placeholder="Your Role"
-                    value={formData.applicantRole}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="johndoe@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Mobile</FormLabel>
-                  <Input
-                    name="mobile"
-                    type="phone"
-                    placeholder="XXXXXXXXXXX"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
+            ) : (
+              <div>
+                <div>
+                  <Typography level="h4" component="h1">
+                    <b>Signup</b>
+                  </Typography>
+                  <Typography level="body-sm">
+                    Register as an Enterpise to start.
+                  </Typography>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <FormControl>
+                    <FormLabel>Company Name</FormLabel>
+                    <input
+                      name="companyName"
+                      type="text"
+                      placeholder="Your Company's Name"
+                      value={formData.companyName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Applicant Name</FormLabel>
+                    <input
+                      name="applicantName"
+                      type="text"
+                      placeholder="Your Name"
+                      value={formData.applicantName}
+                      onChange={handleChange}
+                      required
+                    />
+                    <FormLabel>Applicant Role</FormLabel>
+                  </FormControl>
+                  <FormControl>
+                    <input
+                      name="applicantRole"
+                      type="text"
+                      placeholder="Your Role"
+                      value={formData.applicantRole}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Email</FormLabel>
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="johndoe@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Mobile</FormLabel>
+                    <input
+                      name="mobile"
+                      type="phone"
+                      placeholder="XXXXXXXXXXX"
+                      value={formData.mobile}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
 
-                <FormControl>
-                  <FormLabel>Password</FormLabel>
-                  <Input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel>Address</FormLabel>
-                  <Input
-                    name="address"
-                    type="text"
-                    placeholder="Your Address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    required
-                  />
-                </FormControl>
+                  <FormControl>
+                    <FormLabel>Password</FormLabel>
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <FormLabel>Address</FormLabel>
+                    <input
+                      name="address"
+                      type="text"
+                      placeholder="Your Address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </FormControl>
 
-                <Button
-                  type="submit"
-                  sx={{ mt: 1, textAlign: "center", backgroundColor: "green" }}
-                  onSubmit={handleSubmit}
+                  <button
+                  className="btn-primary"
+                    type="submit"
+                    sx={{
+                      mt: 1,
+                      textAlign: "center",
+                      backgroundColor: "green",
+                    }}
+                    onSubmit={handleSubmit}
+                  >
+                    Sign Up
+                  </button>
+                </form>
+                <Typography
+                  endDecorator={<Link href="/login">Log in</Link>}
+                  fontSize="sm"
+                  sx={{ alignSelf: "center" }}
                 >
-                  Sign Up
-                </Button>
-              </form>
-              <Typography
-                endDecorator={<Link href="/login">Log in</Link>}
-                fontSize="sm"
-                sx={{ alignSelf: "center" }}
-              >
-                Already have an account?
-              </Typography>
-              <div id="recaptcha-container"></div>
-            </div>
-          )}
-        </Sheet>
-      </main>
-    </CssVarsProvider>
+                  Already have an account?
+                </Typography>
+                <div id="recaptcha-container"></div>
+              </div>
+            )}
+          </Sheet>
+        </main>
+      </CssVarsProvider>
+    </div>
   );
 }

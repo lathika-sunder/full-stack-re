@@ -40,20 +40,26 @@ const IndividualDashboard = () => {
         <div className="ag-format-container">
           <div className="ag-courses_box">
             <div className="ag-courses_item">
-              <Link to="/sell-waste/individual" className="ag-courses-item_link">
+              <Link
+                to="/sell-waste/individual"
+                className="ag-courses-item_link"
+              >
                 <div className="ag-courses-item_bg"></div>
 
                 <div className="ag-courses-item_title">Sell Waste</div>
 
                 <div className="ag-courses-item_date-box">
-                  Start:
-                  <span className="ag-courses-item_date">04.11.2022</span>
+                  Upload
+                  <span className="ag-courses-item_date"> Waste Details</span>
                 </div>
               </Link>
             </div>
 
             <div className="ag-courses_item">
-              <Link to="/request-history/individual" className="ag-courses-item_link">
+              <Link
+                to="/request-history/individual"
+                className="ag-courses-item_link"
+              >
                 <div className="ag-courses-item_bg"></div>
 
                 <div className="ag-courses-item_title">Sale History</div>
@@ -66,20 +72,24 @@ const IndividualDashboard = () => {
             </div>
 
             <div className="ag-courses_item">
-              <a href="#" className="ag-courses-item_link">
+              <Link
+                to="/completed-transactions/individual"
+                className="ag-courses-item_link"
+              >
                 <div className="ag-courses-item_bg"></div>
 
-                <div className="ag-courses-item_title">Notifications</div>
+                <div className="ag-courses-item_title">
+                  Completed Transactions
+                </div>
 
                 <div className="ag-courses-item_date-box">
                   Start:
                   <span className="ag-courses-item_date">04.11.2022</span>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

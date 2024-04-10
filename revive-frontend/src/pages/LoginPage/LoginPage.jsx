@@ -75,7 +75,8 @@ export default function LoginPage() {
   };
 
   return (
-    <CssVarsProvider>
+   <div className="login-form">
+     <CssVarsProvider>
       <ToastContainer />
       <main>
         <Sheet
@@ -90,8 +91,9 @@ export default function LoginPage() {
             gap: 2,
             borderRadius: "sm",
             boxShadow: "md",
+            backgroundColor:"#171717"
           }}
-          variant="outlined"
+         
         >
           <div>
             <div>
@@ -104,7 +106,7 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit}>
               <FormControl>
                 <FormLabel>Mobile</FormLabel>
-                <Input
+                <input
                   name="mobile"
                   type="phone"
                   placeholder="XXXXXXXXXXX"
@@ -116,7 +118,7 @@ export default function LoginPage() {
 
               <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input
+                <input
                   name="password"
                   type="password"
                   placeholder="Password"
@@ -126,14 +128,15 @@ export default function LoginPage() {
                 />
               </FormControl>
 
-              <Button
+              <button
                 type="submit"
-                sx={{ mt: 1, textAlign: "center", backgroundColor: "green" }}
                 onSubmit={handleSubmit}
+                className="btn-primary"
               >
                 Login
-              </Button>
+              </button>
             </form>
+            <br></br>
             <Typography
               endDecorator={<Link href="/login">Log in</Link>}
               fontSize="sm"
@@ -141,10 +144,11 @@ export default function LoginPage() {
             >
               Don't have an account?
             </Typography>
-            <div id="recaptcha-container"></div>
+            <div id="recaptcha-container" className="recaptcha-container"></div>
           </div>
         </Sheet>
       </main>
     </CssVarsProvider>
+   </div>
   );
 }

@@ -37,7 +37,7 @@
   
   input[type="text"].otp-input:focus {
     outline: none;
-    border-color: #26FF00;
+
   }
   .otp-container{
     margin: 5vh;
@@ -51,3 +51,36 @@
   .enterprise-verification{
     
   }
+  .enterprise-signup {
+    color: white;
+    font-size: larger;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: #171717;
+  
+  .recaptcha-container{
+      padding-top: 2vh;
+  }
+  
+  form,main{
+    background-color: #171717;
+  }
+    h1 {
+      color: white;
+      font-size: 12vh;
+    }
+    p {
+      color: white;
+    }
+    input {
+      background-color: #171717;
+      border: none;
+      color: white;
+      padding: 1vh;
+    }
+    input:hover {
+      border-bottom: 1vh white;
+    }
+  }
+  
