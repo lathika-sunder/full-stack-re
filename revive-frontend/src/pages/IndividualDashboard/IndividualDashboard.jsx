@@ -4,6 +4,7 @@ import RequestPickupComponent from "../../components/RequestPickupComponent/Requ
 import "./IndividualDashboard.css";
 import globeGreen from "../../assets/images/dashboard-img.png";
 import { Link } from "react-router-dom";
+import DateGraphComp from "../../components/DateGraphComp/DateGraphComp";
 
 const IndividualDashboard = () => {
   const [data, setData] = useState({});
@@ -38,6 +39,7 @@ const IndividualDashboard = () => {
         </div>
 
         <div className="ag-format-container">
+          
           <div className="ag-courses_box">
             <div className="ag-courses_item">
               <Link

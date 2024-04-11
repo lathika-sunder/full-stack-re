@@ -13,6 +13,8 @@ import { RiFileUploadLine } from "react-icons/ri";
 
 const RequestPickupComponent = () => {
   const [electricProducts, setElectricProducts] = useState([]);
+  const [fileName, setFileName] = useState(null);
+  const [imageData,setImageData]=useState(null)
   axios
     .get("http://localhost:4040/api/v1/electricProducts")
     .then((response) => {
@@ -36,9 +38,18 @@ const RequestPickupComponent = () => {
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.files);
+    setImage(e.target.files[0]);
+    console.log(image);
+    setFileName(e.target.files[0].name);
+    const reader = new FileReader();
+  
+    reader.onload = (event) => {
+      const imageData = event.target.result;
+      setImageData(imageData);
+    };
+    reader.readAsDataURL(e.target.files[0]); // Corrected line
   };
-
+  
   const postData = () => {
     axios.post("http://localhost:4040/api/v1/individuals/", {
       image,
@@ -80,11 +91,13 @@ const RequestPickupComponent = () => {
                     id="image-upload"
                     type="file"
                     accept="image/*"
-                    className="visually-hidden" // Visually hide the input
+                    className="visually-hidden"
+                    onChange={handleImageChange}
                   />
                   <label htmlFor="image-upload" className="file-label">
                     <RiFileUploadLine size={24} />
                     <span>Click to Upload Image</span>
+                    {fileName !== null ? <p>{fileName}</p> : <p>Not Selected</p>}
                   </label>
                 </div>
               </div>
@@ -144,7 +157,6 @@ const RequestPickupComponent = () => {
                     option.label === value.label
                   }
                   className="category-input"
-                  
                   renderInput={(params) => <TextField {...params} />}
                 />
               </div>
@@ -157,9 +169,9 @@ const RequestPickupComponent = () => {
                   placeholder="Address"
                 />
               </div>
-              
+
               <div className="date-picker-container">
-              <p>Pickup date <br/>& time </p>
+                <p>Date & Time </p>
                 <DatePicker
                   selected={selectedDateTime}
                   onChange={handleTimeChange}
@@ -183,6 +195,7 @@ const RequestPickupComponent = () => {
         <OrderSummaryComponent
           selectedDateTime={selectedDateTime}
           image={image}
+          imageData={imageData}
           description={description}
           tags={tags}
           quantity={quantity}

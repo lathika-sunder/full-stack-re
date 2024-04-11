@@ -43,9 +43,7 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const recaptcha=await sendCaptcha()
-        if(recaptcha)
-        {
+        
           axios.post('http://localhost:4040/api/v1/users/login', formData)
           .then((response) => {
             if (response.status === 201) {
@@ -67,7 +65,7 @@ export default function LoginPage() {
             console.log("Error Logging in", error);
           });
         
-        }
+        
     
     } catch (error) {
         console.log('Recaptcha Verification failed', error);
@@ -144,7 +142,7 @@ export default function LoginPage() {
             >
               Don't have an account?
             </Typography>
-            <div id="recaptcha-container" className="recaptcha-container"></div>
+            {/* <div id="recaptcha-container" className="recaptcha-container"></div> */}
           </div>
         </Sheet>
       </main>

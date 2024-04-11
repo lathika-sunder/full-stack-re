@@ -159,7 +159,7 @@ const EnterpriserequestComp= () => {
               </div>
               
               <div className="date-picker-container">
-              <p>Pickup date <br/>& time </p>
+              <p>Date & Time </p>
                 <DatePicker
                   selected={selectedDateTime}
                   onChange={handleTimeChange}

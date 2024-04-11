@@ -1,59 +1,118 @@
-.Main_Container{
-    display: grid;
-    justify-items: center;
-    grid-template-rows: [row1-start] 60px [row1-end] auto [last-line];
-   padding: 3vh;
-    
-}
+.Main_Container {
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 3vh;
+  overflow-y: hidden;
+  max-height: 82vh;  
+ .request-img{
+  height: 30vh;
+ }
 
-.Main_Container p{
-    padding:  1vh;
-}
-
-.waste-tags{
-    background: rgba(108, 232, 116, 0.808);
-box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);
-backdrop-filter: blur( 4px );
--webkit-backdrop-filter: blur( 4px );
-border-radius: 10px;
-border: 1px solid rgba(64, 255, 0, 0.731);
-padding:1vh;
-margin: 1vh;
-}
-
-.request-list{
-    display: grid;
-    gap: 20px;
-}
-.Container{
+  .history-content{
     display: flex;
-    justify-content: space-between;
-    grid-template-columns: repeat(3,0.75fr);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: left;
-    object-fit: contain;
-    border-radius: 2rem;
-    padding: 20px;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .request-list {
+    flex: 1; /* Expand to fill remaining space */
+    overflow: auto; /* Enable vertical scrollbar */
+    max-height: 70vh;
+    padding: 2vh;
+  }
 }
 
-.icon{
-    height: 50px;
-}
-.processing-icon{
-    background-color: rgb(234, 246, 185);
-    border-radius: 15px;
-    border-style: solid;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-}
-.status{
-    padding: 20px;
-    display: grid;
-    justify-items: center;
-    
+
+
+.history-content {
+  display: flex;
 }
 
-img{
-    border-radius: 20px;
+.request-list {
+  flex: 1; /* Expand to fill remaining space */
+  flex-direction: column;
+  overflow-y: auto; 
+  /* max-height: 500px; Maximum height for the request list */
+  /* padding-right: 10px; Adjust for scrollbar width */
 }
+
+.Main_Container p {
+  padding: 1vh;
+}
+
+.waste-tags {
+  background: rgba(108, 232, 116, 0.808);
+  box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(64, 255, 0, 0.731);
+  padding: 1vh;
+  margin: 1vh;
+}
+.tags{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Container {
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: left;
+  object-fit: contain;
+  border-radius: 2rem;
+  padding: 20px;
+}
+
+.icon {
+  height: 50px;
+}
+.processing-icon {
+  background-color: #171717;
+  border-radius: 15px;
+  text-align: center;
+}
+.status {
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+}
+
+img {
+  border-radius: 20px;
+}
+
+/* DateGraphComp.css */
+
+
+
+.graph {
+    color: aliceblue;
+  width: 100%; /* Ensure the graph fills the container */
+  height: 100%; /* Ensure the graph fills the container */
+  margin: 1vh;
+}
+
+.Main_Container {
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap;
+  text-align: center;
+  flex-direction: column;
+
+
+  h1{
+    padding-bottom: 5vh;
+  }
+
+  .image-container{
+    min-width: 40vh;
+  }
+
+  .content{
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+/* Add any other styles specific to your application layout */

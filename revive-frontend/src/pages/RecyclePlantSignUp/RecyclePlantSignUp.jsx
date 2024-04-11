@@ -106,10 +106,8 @@ const RecyclePlantSignUp = () => {
           <Sheet
             sx={{
               width: 300,
+              py:1,
               mx: "auto",
-              my: 8,
-              py: 3,
-              px: 6,
               display: "flex",
               flexDirection: "column",
               gap: 2,
