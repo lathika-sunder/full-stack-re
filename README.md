@@ -1,16 +1,16 @@
 # Revive: E-Waste Monitoring System
-[![Revive Logo](revive_logo.png)](https://socialify.git.ci/lathika-sunder/full-stack-re/image?language=1&name=1&owner=1&theme=Light)
+![full-stack-re](https://socialify.git.ci/lathika-sunder/full-stack-re/image?language=1&name=1&owner=1&theme=Light)
 
 ---
 
 **Table of Contents**
-[Abstract](#abstract)
- [User Personas](#user-personas)
-[Project Flow](#project-flow)
-[Tech Stack](#tech-stack)
-[Installation Guide](#installation-guide)
-[Contributing](#contributing)
-[License](#license)
+1. [Abstract](#abstract)
+2. [User Personas](#user-personas)
+3. [Project Flow](#project-flow)
+4. [Tech Stack](#tech-stack)
+5. [Installation Guide](#installation-guide)
+6. [Contributing](#contributing)
+7. [License](#license)
 
 ---
 
