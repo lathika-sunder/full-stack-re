@@ -92,9 +92,9 @@ Revive revolutionizes e-waste management by providing a comprehensive online pla
 ![image](https://github.com/lathika-sunder/full-stack-re/assets/95066409/1444c6c6-3089-4529-bfe4-b5e80d076971)
 
 - Enterprises
-- ![image](https://github.com/lathika-sunder/full-stack-re/assets/95066409/65f4d035-5350-4450-a32d-3a32a072149a)
+ ![image](https://github.com/lathika-sunder/full-stack-re/assets/95066409/65f4d035-5350-4450-a32d-3a32a072149a)
 
--Super Admin
+- Super Admin
 ![image](https://github.com/lathika-sunder/full-stack-re/assets/95066409/bec4ef27-ec0f-4eb7-b617-91249fc3440c)
 
 - Scrap Dealers
