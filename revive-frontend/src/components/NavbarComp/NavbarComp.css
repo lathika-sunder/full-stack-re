@@ -30,7 +30,8 @@ a:hover{
     color: #E8DF55;
     text-decoration:none;
    border-radius: 2vh;
-    box-shadow:  0 0 1vh #00ff00, 0 0 0.5vh #00ff00, 0 0 0.5vh #00ff00, 0 0 1vh #00ff00, 0 0 4vh #00ff00, inset 0 0 0.1vh #00ff00;
+   box-shadow: 0 0 0.1vh #00ff00, 0 0 0.1vh #00ff00, 0 0 0.1vh #00ff00, 0 0 0.6vh #00ff00, 0 0 2vh #00ff00, inset 0 0 0.1vh #00ff00; 
+   
 }
 
 .content-navbar{

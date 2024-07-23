@@ -1,5 +1,5 @@
 import "./PreloaderComp.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useIsFetching } from "react-query";
 import CircularProgress from '@mui/material/CircularProgress';
 import preloader from '../../assets/images/preloader.gif'

@@ -15,7 +15,7 @@
   }
     h1 {
       color: white;
-      font-size: 12vh;
+      font-size: 8vh;
     }
     p {
       color: white;
@@ -29,5 +29,40 @@
     input:hover {
       border-bottom: 1vh white;
     }
+
+    .recaptcha-container div{
+      height: 5vh;
+    }
+
+    /* For Chrome, Safari, Edge, and Opera */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #171717 inset !important; /* Adjust to your background color */
+  -webkit-text-fill-color: #fff !important; /* Adjust to your text color */
+}
+
+/* For Firefox */
+input:-moz-autofill,
+input:-moz-autofill:hover,
+input:-moz-autofill:focus,
+input:-moz-autofill:active {
+  background-color: #171717 !important; /* Adjust to your background color */
+  color: #fff !important; /* Adjust to your text color */
+}
+
+/* For Internet Explorer */
+input:-ms-autofill,
+input:-ms-autofill:hover,
+input:-ms-autofill:focus,
+input:-ms-autofill:active {
+  background-color: #171717 !important; /* Adjust to your background color */
+  color: #fff !important; /* Adjust to your text color */
+}
+
+span{
+  font-size: small;
+}
   }
   

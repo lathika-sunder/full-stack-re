@@ -1,26 +1,19 @@
 import * as React from "react";
 import axios from "axios";
 import { CssVarsProvider } from "@mui/joy/styles";
-import OtpInput from "react-otp-input";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import Input from "@mui/joy/Input";
-import Button from "@mui/joy/Button";
-import Link from "@mui/joy/Link";
-import { CgSpinner } from "react-icons/cg";
-import "./IndividualSignUp.css";
-import auth from "../../assets/firebase/setup";
 import { ToastContainer, toast } from "react-toastify";
-import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Link from "@mui/joy/Link";
+import "./IndividualSignUp.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function IndividualSignUp() {
   const navigate = useNavigate();
-  const [isOtpSent, setIsOtpSent] = React.useState(false);
-  const [otp, setOtp] = React.useState("");
-  const [user, setUser] = React.useState(null);
+
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -28,6 +21,8 @@ export default function IndividualSignUp() {
     mobile: "",
     password: "",
   });
+
+  const [errors, setErrors] = React.useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,43 +32,71 @@ export default function IndividualSignUp() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
-      console.log(formData);
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        formData.mobile,
-        recaptcha
-      );
-      if (confirmation) setIsOtpSent(true);
-      setUser(confirmation);
-    } catch (error) {}
+  const validate = () => {
+    const newErrors = {};
+
+    // Name validation
+    if (!formData.name) {
+      newErrors.name = "Name is required.";
+    } else if (formData.name.length > 25) {
+      newErrors.name = "Name cannot exceed 25 characters.";
+    }
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!emailPattern.test(formData.email)) {
+      newErrors.email = "Email is not valid.";
+    }
+
+    // Mobile number validation
+    const mobilePattern = /^[0-9]{10}$/;
+    if (!formData.mobile) {
+      newErrors.mobile = "Mobile number is required.";
+    } else if (!mobilePattern.test(formData.mobile)) {
+      newErrors.mobile = "Mobile number is not valid. It should be 10 digits.";
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = "Password is required.";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password should be at least 6 characters.";
+    }
+
+    // Address validation
+    if (!formData.address) {
+      newErrors.address = "Address is required.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   };
 
-  const postData = (request, response) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validate()) {
+      try {
+        await postData();
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    } else {
+      toast.error("Please correct the errors in the form.");
+    }
+  };
+
+  const postData = () => {
     axios
       .post("http://localhost:4040/api/v1/individuals", formData)
       .then((response) => {
-        alert("Account Created Successfully");
-        navigate("/login");
-      })
-      .catch((err) => alert(err));
-  };
-
-  const verifyOTP = async () => {
-    try {
-      const result = await user.confirm(otp);
-      if (result) {
         toast.success("Account Created Successfully");
         navigate("/login");
-        postData();
-      }
-    } catch (error) {
-      toast.error("OTP Incorrect.Try again");
-      console.log(error);
-    }
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   return (
@@ -83,7 +106,7 @@ export default function IndividualSignUp() {
         <main>
           <Sheet
             sx={{
-              width: 300,
+              width: 400,
               mx: "auto",
               my: 0,
               py: 3,
@@ -91,120 +114,98 @@ export default function IndividualSignUp() {
               display: "flex",
               flexDirection: "column",
               gap: 2,
-         
-            border:"none",
-              backgroundColor:"#171717"
+              border: "none",
+              backgroundColor: "#171717",
             }}
             variant="outlined"
           >
-            {isOtpSent ? (
-              <div className="otp-verification">
-                <div className="verification-container">
-                  <p className="otp-confirm-msg">
-                    Verify OTP for {formData.mobile}
-                  </p>
-                  <OtpInput
-                    value={otp}
-                    onChange={setOtp}
-                    numInputs={6}
-                    separator={<span> </span>}
-                    inputStyle="otp-input"
-                    renderInput={(props) => <input {...props} />}
-                    containerStyle="otp-container"
-                  />
-                  <Button color="success" onClick={verifyOTP}>
-                    <CgSpinner /> Verify OTP
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <div>
-                  <Typography level="h4" component="h1">
-                    <b>Welcome!</b>
-                  </Typography>
-                  <Typography level="body-sm">
-                    Create an account to start.
-                  </Typography>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <FormControl>
-                    <FormLabel>Name</FormLabel>
-                    <input
-                      name="name"
-                      type="text"
-                      placeholder="Your Name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Email</FormLabel>
-                    <input
-                      name="email"
-                      type="email"
-                      placeholder="johndoe@example.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Mobile</FormLabel>
-                    <input
-                      name="mobile"
-                      type="phone"
-                      placeholder="XXXXXXXXXXX"
-                      value={formData.mobile}
-                      onChange={handleChange}
-                      required
-                      minLength={10}
-                    />
-                  </FormControl>
-
-                  <FormControl>
-                    <FormLabel>Password</FormLabel>
-                    <input
-                      name="password"
-                      type="password"
-                      placeholder="Password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      minLength={6}
-                      required
-                    />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Address</FormLabel>
-                    <input
-                      name="address"
-                      type="text"
-                      placeholder="Your Address"
-                      value={formData.address}
-                      onChange={handleChange}
-                      required
-                    />
-                  </FormControl>
-
-                  <button className="btn-primary"
-                  >
-                    Sign Up
-                  </button>
-                </form>
-                <Typography
-                  endDecorator={<Link href="/login">Log in</Link>}
-                  fontSize="sm"
-                  sx={{ alignSelf: "center" }}
-                >
-                  Already have an account?
-                </Typography>
-                <div id="recaptcha-container"></div>
-              </div>
-            )}
+            <div>
+              <Typography level="h4" component="h1">
+                <b>Welcome!</b>
+              </Typography>
+              <Typography level="body-sm">
+                Create an account to start.
+              </Typography>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <FormControl>
+                <FormLabel>Name</FormLabel>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.name && <span className="error">{errors.name}</span>}
+              </FormControl>
+              <FormControl>
+                <FormLabel>Email</FormLabel>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="johndoe@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.email && <span className="error">{errors.email}</span>}
+              </FormControl>
+              <FormControl>
+                <FormLabel>Mobile</FormLabel>
+                <input
+                  name="mobile"
+                  type="tel"
+                  placeholder="XXXXXXXXXX"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.mobile && <span className="error">{errors.mobile}</span>}
+              </FormControl>
+              <FormControl>
+                <FormLabel>Password</FormLabel>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  minLength={6}
+                  required
+                />
+                {errors.password && <span className="error">{errors.password}</span>}
+              </FormControl>
+              <FormControl>
+                <FormLabel>Address</FormLabel>
+                <input
+                  name="address"
+                  type="text"
+                  placeholder="Your Address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.address && <span className="error">{errors.address}</span>}
+              </FormControl>
+              <button className="btn-primary" type="submit">
+                Sign Up
+              </button>
+            </form>
+            <br />
+            <Typography
+              endDecorator={<Link href="/login">Log in</Link>}
+              fontSize="sm"
+              sx={{ alignSelf: "center" }}
+            >
+              Already have an account?
+            </Typography>
           </Sheet>
         </main>
       </CssVarsProvider>
     </div>
   );
 }
+
+

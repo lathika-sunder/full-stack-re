@@ -35,7 +35,8 @@ body{
 
 .btn-primary:hover {
   background-color: #33BF00;
-  box-shadow: 0 0 1vh #00ff00, 0 0 0.5vh #00ff00, 0 0 0.5vh #00ff00, 0 0 1vh #00ff00, 0 0 4vh #00ff00, inset 0 0 0.1vh #00ff00; /* Neon glow effect */
+  box-shadow: 0 0 0.1vh #00ff00, 0 0 0.1vh #00ff00, 0 0 0.1vh #00ff00, 0 0 0.6vh #00ff00, 0 0 2vh #00ff00, inset 0 0 0.1vh #00ff00; 
+
 }
 .btn-secondary {
  
@@ -54,5 +55,6 @@ body{
 
 .btn-secondary:hover {
 
-  box-shadow: 0 0 1vh #00ff00, 0 0 0.5vh #00ff00, 0 0 0.5vh #00ff00, 0 0 1vh #00ff00, 0 0 4vh #00ff00, inset 0 0 0.1vh #00ff00; 
+  box-shadow: 0 0 0.1vh #00ff00, 0 0 0.1vh #00ff00, 0 0 0.1vh #00ff00, 0 0 0.6vh #00ff00, 0 0 2vh #00ff00, inset 0 0 0.1vh #00ff00; 
+
 }
