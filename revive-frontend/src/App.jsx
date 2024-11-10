@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useEffect, useState } from "react";
+
 import "./App.css";
 import { BrowserRouter, Routes, Route, useNavigation } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
@@ -30,12 +30,6 @@ import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 const queryClient = new QueryClient();
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
-    setIsLoading(true);
-    return () => clearTimeout(timer);
-  }, [window.location.pathname]);
 
 
 
@@ -43,9 +37,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <NavbarComp/>
-        {isLoading ? (
-          <Preloader />
-        ) : (
+        
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/sign-up" element={<SignUpPage />} />
@@ -119,7 +111,7 @@ function App() {
               element={<ContactUsPage />}
             />
           </Routes>
-        )}
+        
       </BrowserRouter>
     </QueryClientProvider>
   );

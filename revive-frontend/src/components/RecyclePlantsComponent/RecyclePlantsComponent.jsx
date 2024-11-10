@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './RecyclePlantsComponent.css'
 import { useNavigate ,Link} from 'react-router-dom';
 
+
 const RecyclePlantsComponent = () => {
-    useEffect(() => {
-        document.title = "Revive";
-    }, []);
+  
 
     const navigate= useNavigate();
 

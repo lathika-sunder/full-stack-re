@@ -64,6 +64,7 @@ export default function LoginPage() {
           .catch((error) => {
             toast.error("Invalid  Credentials")
             console.log("Error Logging in", error);
+            toast.error(error.response.data)
           });
         
         
@@ -143,7 +144,7 @@ export default function LoginPage() {
             >
               Don't have an account?
             </Typography>
-            {/* <div id="recaptcha-container" className="recaptcha-container"></div> */}
+    
           </div>
         </Sheet>
       </main>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "../NavbarComp/NavbarComp.css";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import logo from "../../assets/images/revive-favicon.jpg";

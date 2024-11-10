@@ -1,20 +1,15 @@
 import * as React from "react";
 import axios from "axios";
 import { CssVarsProvider } from "@mui/joy/styles";
-import OtpInput from "react-otp-input";
 import Sheet from "@mui/joy/Sheet";
 import Typography from "@mui/joy/Typography";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
-import Input from "@mui/joy/Input";
-import Button from "@mui/joy/Button";
-import Link from "@mui/joy/Link";
-import { CgSpinner } from "react-icons/cg";
-import "./IndividualSignUp.css";
-import auth from "../../assets/firebase/setup";
 import { ToastContainer, toast } from "react-toastify";
-import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Link from "@mui/joy/Link";
+import "./IndividualSignUp.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function IndividualSignUp() {
   const navigate = useNavigate();
@@ -30,12 +25,57 @@ export default function IndividualSignUp() {
     password: "",
   });
 
+  const [errors, setErrors] = React.useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const validate = () => {
+    const newErrors = {};
+
+    // Name validation
+    if (!formData.name) {
+      newErrors.name = "Name is required.";
+    } else if (formData.name.length > 25) {
+      newErrors.name = "Name cannot exceed 25 characters.";
+    }
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!emailPattern.test(formData.email)) {
+      newErrors.email = "Email is not valid.";
+    }
+
+    // Mobile number validation
+    const mobilePattern = /^[0-9]{10}$/;
+    if (!formData.mobile) {
+      newErrors.mobile = "Mobile number is required.";
+    } else if (!mobilePattern.test(formData.mobile)) {
+      newErrors.mobile = "Mobile number is not valid. It should be 10 digits.";
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = "Password is required.";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Password should be at least 6 characters.";
+    }
+
+    // Address validation
+    if (!formData.address) {
+      newErrors.address = "Address is required.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
@@ -66,24 +106,10 @@ export default function IndividualSignUp() {
     axios
       .post("http://localhost:4040/api/v1/individuals", formData)
       .then((response) => {
-        alert("Account Created Successfully");
-        navigate("/login");
-      })
-      .catch((err) => alert(err));
-  };
-
-  const verifyOTP = async () => {
-    try {
-      const result = await user.confirm(otp);
-      if (result) {
         toast.success("Account Created Successfully");
         navigate("/login");
-        postData();
-      }
-    } catch (error) {
-      toast.error("OTP Incorrect.Try again");
-      console.log(error);
-    }
+      })
+      .catch((err) => toast.error(err.message));
   };
 
   return (
@@ -93,7 +119,7 @@ export default function IndividualSignUp() {
         <main>
           <Sheet
             sx={{
-              width: 300,
+              width: 400,
               mx: "auto",
               my: 0,
               py: 3,
@@ -101,9 +127,8 @@ export default function IndividualSignUp() {
               display: "flex",
               flexDirection: "column",
               gap: 2,
-         
-            border:"none",
-              backgroundColor:"#171717"
+              border: "none",
+              backgroundColor: "#171717",
             }}
             variant="outlined"
           >
@@ -211,3 +236,5 @@ export default function IndividualSignUp() {
     </div>
   );
 }
+
+

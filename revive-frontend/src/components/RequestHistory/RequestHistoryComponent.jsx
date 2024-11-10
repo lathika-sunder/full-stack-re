@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaCheck } from "react-icons/fa";
 import { CiNoWaitingSign } from "react-icons/ci";
 import { FaRegClock } from "react-icons/fa6";
@@ -8,15 +8,17 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import DateGraphComp from "../DateGraphComp/DateGraphComp";
+import { useQuery } from "react-query";
+import Preloader from "../PreLoaderComp/PreloaderComp";
+import { toast, ToastContainer } from "react-toastify";
 
 const RequestHistoryComponent = () => {
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
+  const token = localStorage.getItem("token");
+
+
     const fetchHistory = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(
+        const  {data} = await axios.get(
           "http://localhost:4040/api/v1/individuals/pickup-history",
           {
             headers: {
@@ -24,6 +26,17 @@ const RequestHistoryComponent = () => {
             },
           }
         );
+        return data;
+      }
+
+         const {data,error,isLoading}=useQuery('data',fetchHistory)
+
+         if(isLoading)
+         {
+          <Preloader/>
+         }
+         if(error)
+          toast.error(error)
 
         const requestData = response.data.map(async (item) => {
           if (item.status === "accepted") {
@@ -36,15 +49,9 @@ const RequestHistoryComponent = () => {
           }
         });
 
-        const updatedData = await Promise.all(requestData);
+        const updatedData = Promise.all(requestData);
         setData(updatedData.reverse());
-      } catch (error) {
-        console.log("Error getting user sales history", error);
-      }
-    };
 
-    fetchHistory();
-  }, []);
 
   const findAcceptedScrapDealer = async (id) => {
     try {
@@ -60,16 +67,7 @@ const RequestHistoryComponent = () => {
 
   return (
     <div className="Main_Container">
-      {/* <Breadcrumbs aria-label="breadcrumb">
-      <Link color={"#00bf44"} href="/">
-        Home
-      </Link>
-      <Link color={"#00bf44"} href="/dashboard/individual">
-        Dashboard
-      </Link>
-      <Typography color="white"> RequestHistory</Typography>
-    </Breadcrumbs> */}
-
+      <ToastContainer/>
       <div className="history-content">
         <div className="">
           <h1 className="title">Requests</h1>
