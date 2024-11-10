@@ -1,61 +1,82 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Typography, Grid, Card, CardContent } from '@mui/material';
-import './CompletedTransactionsIndidviduals.css'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Grid } from "@mui/material";
+import { FaRegClock, FaCheck } from "react-icons/fa";
+import { CiNoWaitingSign } from "react-icons/ci";
+import "./CompletedTransactionsIndidviduals.css";
 
 const CompletedTransactionsIndividuals = () => {
-    const [pickupRequests, setPickupRequests] = useState([]);
+  const [pickupRequests, setPickupRequests] = useState([]);
 
-    useEffect(() => {
-        const fetchHistory = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:4040/api/v1/individuals/pickup-history', {
-                    headers: {
-                        Authorization: token,
-                    },
-                });
-                setPickupRequests(response.data);
-            } catch (error) {
-                console.log('Error getting user pickup history', error);
-            }
-        };
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          "http://localhost:4040/api/v1/individuals/pickup-history",
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        setPickupRequests(response.data);
+      } catch (error) {
+        console.log("Error getting user pickup history", error);
+      }
+    };
 
-        fetchHistory();
-    }, []);
+    fetchHistory();
+  }, []);
 
-    return (
-        <div className="transactions-individuals">
-            <Typography variant="h4" gutterBottom>
-                Completed Transactions
-            </Typography>
-            <Grid container spacing={2} className='container'>
-                {pickupRequests.map((request, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                        <Card>
-                            <CardContent>
-                                <Typography variant="h6" gutterBottom>
-                                    {request.description}
-                                </Typography>
-                                <Typography variant="body1" gutterBottom>
-                                    Quantity: {request.quantity}
-                                </Typography>
-                                <Typography variant="body1" gutterBottom>
-                                    Tags: {request.tags.join(', ')}
-                                </Typography>
-                                <Typography variant="body1" gutterBottom>
-                                    Address: {request.address}
-                                </Typography>
-                                <Typography variant="body2" gutterBottom>
-                                    Requested At: {new Date(request.selectedDateTime).toLocaleString()}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
-        </div>
-    );
+  return (
+    <div className="transactions-individuals">
+      <h1>Completed Transactions</h1>
+      <Grid container spacing={2} className="container">
+        {pickupRequests.map(
+          (ele, index) =>
+            (ele.requestStatus === "Completed" || ele.requestStatus==="Accepted") && (
+              <Grid item xs={22} sm={26} md={5} key={index}>
+                <div className="Container">
+                  <div className="image-container">
+                    <img
+                      src={ele.image}
+                      className="transaction-img"
+                      alt="Request"
+                    />
+                  </div>
+                  <div className="content">
+                    <div className="x">
+                      <h3>{ele.description}</h3>
+                      <p className="date">
+                        {new Date(ele.selectedDateTime)
+                          .toLocaleString()
+                          .split(",")}
+                      </p>
+                      <div className="tags">
+                        {ele.tags.map((tag, index) => (
+                          <span className="waste-tags" key={index}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <p>{ele.quantity} units</p>
+                      <p className="address">{ele.address}</p>
+                    </div>
+                    <div className="status">
+                      <div className="completed-icon">
+                        <FaCheck className="icon" color="#00bf00" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Grid>
+            )
+        )}
+      </Grid>
+      {/* Add an empty state message or component here */}
+    </div>
+  );
 };
 
 export default CompletedTransactionsIndividuals;

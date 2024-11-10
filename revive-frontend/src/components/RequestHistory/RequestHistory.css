@@ -1,25 +1,41 @@
 .Main_Container {
   justify-items: center;
   display: flex;
+  align-items: center;
   flex-direction: column;
+  margin-top: 4vh;
   padding: 3vh;
   overflow-y: hidden;
   max-height: 82vh;  
+  .address{
+    font-size: small;
+    color: #757575;
+    font-style: italic;
+  }
  .request-img{
-  height: 30vh;
+  height: 20vh;
  }
-
+ .title{
+  text-align: left;
+  color: #FFFFFF;
+ }
+.date{
+  font-size: small;
+  color: #757575;
+}
   .history-content{
     display: flex;
     flex-direction: row;
     height: 100%;
+    padding-left: 1vh;
   }
 
   .request-list {
     flex: 1; /* Expand to fill remaining space */
     overflow: auto; /* Enable vertical scrollbar */
-    max-height: 70vh;
-    padding: 2vh;
+    max-height: 60vh;
+    padding: 3.5vh;
+    margin: 1vh;
   }
 }
 
@@ -27,6 +43,7 @@
 
 .history-content {
   display: flex;
+  padding-left: 1vh;
 }
 
 .request-list {
@@ -42,8 +59,8 @@
 }
 
 .waste-tags {
-  background: rgba(108, 232, 116, 0.808);
-  box-shadow: 0 8px 32px 0 rgba(30, 165, 20, 0.662);
+ font-size: small;
+  box-shadow: 0 2px 12px 0 rgba(30, 165, 20, 0.662);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
@@ -58,25 +75,36 @@
 
 .Container {
   display: flex;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
   text-align: left;
   object-fit: contain;
   border-radius: 2rem;
-  padding: 20px;
+  margin: 2vh;
+  padding: 2vh;
 }
 
 .icon {
-  height: 50px;
+  height: 8vh;
+  padding: 2vh;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  /* background-color: rgba(204, 215, 235, 0.75); */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  width: 8vh;
 }
 .processing-icon {
   background-color: #171717;
-  border-radius: 15px;
-  text-align: center;
+ 
+  
 }
 .status {
-  padding: 20px;
-  display: grid;
-  justify-items: center;
+  text-align: right;
 }
 
 img {
@@ -102,16 +130,25 @@ img {
 
 
   h1{
-    padding-bottom: 5vh;
+    padding-bottom: 2vh;
   }
 
   .image-container{
-    min-width: 40vh;
+    min-width: 35vh;
+    max-width: 30vh;
+
+    img{
+      /* max-width: 25vh; */
+      max-height: 25vh
+      height:100%;
+    }
   }
 
   .content{
     display: flex;
-    justify-content: space-around;
+    width: 100%;
+    justify-content:  space-between;
+    
   }
 }
 

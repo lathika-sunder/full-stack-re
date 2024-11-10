@@ -24,15 +24,13 @@ import RecyclePlantSignUp from "./pages/RecyclePlantSignUp/RecyclePlantSignUp";
 import EnterpriserequestComp from "./components/EnterpriseRequestComp/EnterpriserequestComp";
 import CompletedTransactionsIndividuals from "./pages/CompletedTransactionsIndividuals/CompletedTransactionsIndividuals";
 import CheckOutPage from "./pages/CheckOutPage/CheckOutPage";
+import ContactUsPage from "./pages/ContactUsPage/ContactUsPage";
 
 
 const queryClient = new QueryClient();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
- 
- 
-
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2000);
     setIsLoading(true);
@@ -114,6 +112,11 @@ function App() {
               exact
               path="/dashboard/scrap-dealers"
               element={<ScrapDealersDashboard />}
+            />
+            <Route
+              exact
+              path="/contact-us"
+              element={<ContactUsPage />}
             />
           </Routes>
         )}

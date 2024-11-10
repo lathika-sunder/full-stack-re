@@ -7,7 +7,7 @@ export default function DateGraphComp({ data }) {
   );
   const dates = defaultDates.map((dateString) => {
     const [day, month, year] = dateString.split("/").map(Number); 
-    return new Date(year, month , day); 
+    return new Date(year, month-1 , day); 
   });
   console.log(dates);
   const quantities = data.map((item) => item.quantity);
@@ -19,12 +19,16 @@ export default function DateGraphComp({ data }) {
         series={[
           {
             data: quantities,
+            curve:'catmullRom',
+            area:'true',
+            // showMark:false,
+            label:"Quantity vs Date"
           },
         ]}
         height={350}
-        colors={["#000000", "green"]}
+        colors={[ "#048921","black"]}
         width={550}
-        
+        title="Request History"
         curve="smooth"
         className="graph"
         margin={{ left: 30, right: 30, top: 30, bottom: 30 }}

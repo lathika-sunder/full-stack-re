@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import homeImg from "../../assets/images/home-img.png";
 import responsiveHomeImg from "../../assets/images/responsive-home-img.png";
 import logo from "../../assets/images/revive-logo.png";
+import { CgPhone } from "react-icons/cg";
 const HomePage = () => {
   return (
     <div className="home">
@@ -22,14 +23,18 @@ const HomePage = () => {
         </p>
         <div className="buttons">
           <Link to="/sign-up">
-            <Button className="btn-secondary">
-              Sign Up
-            </Button>
+            <Button className="btn-secondary">Sign Up</Button>
           </Link>
           <Link to="/login">
             <Button variant="contained" className="btn-primary">
               Login
             </Button>
+
+            <Link to="/contact-us">
+              <Button  className="btn-secondary">
+                Contact Us <CgPhone />
+              </Button>
+            </Link>
           </Link>
         </div>
       </div>

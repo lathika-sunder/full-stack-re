@@ -1,5 +1,5 @@
 
-.home{
+.contact-us{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,18 +7,18 @@
 
    padding: 3vh;
 }
-.home {
-    /* background-image: url("../../assets/images/home-bg.png"); */
+.contact-us {
+    /* background-image: url("../../assets/images/contact-us-bg.png"); */
     
     background-repeat: no-repeat;
     background-size: cover;
 }
-.home{
+.contact-us{
     
 .btn-primary {
     background-color: #00bf00;
     font-family: Arial, Helvetica, sans-serif;
-   
+    font-size: large;
     text-transform: capitalize;
     padding:1vh 2.5vh 1vh 2.5vh;
     height: 6vh;
@@ -38,7 +38,7 @@
 .btn-secondary {
    
     font-family: Arial, Helvetica, sans-serif;
-    /* font-size: large; */
+    font-size: large;
     text-transform: capitalize;
     padding:1vh 2.5vh 1vh 2.5vh;
     height: 6vh;
@@ -57,14 +57,14 @@
 }
 
 }
-.home-img{
+.contact-us-img{
 
     width: 60vh;
     animation: moveLeftRight 2s ease infinite alternate;
 }
 
 
-.home{
+.contact-us{
     .hero-content{
         display: flex;
         justify-content: center;  
@@ -106,7 +106,7 @@
 
 
 
-.responsive-home-img{
+.responsive-contact-us-img{
     display: none;
  }
 
@@ -119,10 +119,10 @@
     }
 }
 @media only screen and (max-width:768px){
-    .home{
+    .contact-us{
         flex-direction: column-reverse;
     }
-    .home .hero-content{
+    .contact-us .hero-content{
         margin: 2vh;
         padding: 2vh;
         text-align: center;
@@ -133,10 +133,10 @@
             width: auto;
         }
     }
-    .home .hero-content p{
+    .contact-us .hero-content p{
         width:100%;
     }
-    .home{
+    .contact-us{
         display: flex;
         
         width: 100%;
@@ -146,21 +146,21 @@
     body{
         overflow-x:hidden ;
     }
-    .home-img{
+    .contact-us-img{
        /* display: none; */
       height: 32vh;
       width: max-content;
     }
-    .home .hero-content h1{
+    .contact-us .hero-content h1{
         font-size: 9vh;
         text-align: left;
     }
-    .home .hero-content h1 span{
+    .contact-us .hero-content h1 span{
         background-color: rgba(0, 0, 0, 0);
         border-radius: 1vh;
         padding: 1vh;
     }
-    .responsive-home-img {
+    .responsive-contact-us-img {
         height: 32vh;
         width: 40vh;
         display: flex;

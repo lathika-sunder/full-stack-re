@@ -97,7 +97,7 @@ const RequestPickupComponent = () => {
                   <label htmlFor="image-upload" className="file-label">
                     <RiFileUploadLine size={24} />
                     <span>Click to Upload Image</span>
-                    {fileName !== null ? <p>{fileName}</p> : <p>Not Selected</p>}
+                    {fileName !== null ? <p><span className="waste-tags">{fileName}</span></p> : <p>Not Selected</p>}
                   </label>
                 </div>
               </div>

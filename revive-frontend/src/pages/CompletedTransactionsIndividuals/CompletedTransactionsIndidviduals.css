@@ -1,5 +1,47 @@
-/* .transactions-individuals .container{
-    padding: 1vh;
-    flex-wrap:  wrap;
-    flex-direction: column;
-} */
+.transactions-individuals {
+    margin-left: 1vh;
+    padding: 5vh;
+
+    .transaction-img{
+        height: 30vh;
+        padding: 5vh;
+    }
+    .request-img{
+        height: 20vh;
+       }
+       .title{
+        text-align: left;
+        color: #FFFFFF;
+       }
+      .date{
+        font-size: small;
+        color: #757575;
+      }
+        .history-content{
+          display: flex;
+          flex-direction: row;
+          height: 100%;
+          padding-left: 1vh;
+        }
+      
+        .request-list {
+          flex: 1; /* Expand to fill remaining space */
+          overflow: auto; /* Enable vertical scrollbar */
+          max-height: 60vh;
+          padding: 3.5vh;
+          margin: 1vh;
+        }
+        .x{
+            width: 25vh;
+            margin: 2vh;
+        }
+        .content{
+            display: flex;
+        }
+        .status{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+}
+

@@ -13,18 +13,18 @@
   --tag-color-one: #e0fbf6;
   --tag-color-text-one: #58c2a9;
   --tag-color-two: #ece7fe;
-  --tag-color-text-two: #8972f3;
+  --tag-color-text-two: #78BF77;;
   --tag-color-three: #fde7ea;
-  --tag-color-text-three: #e77f89;
-  --tag-color-four: #f7f8fc;
-  --tag-color-text-four: #a0a6b5;
-  --checkbox-color: #009e90;
+  --tag-color-text-three: #bf00;
+  --tag-color-four: #28AC07;
+  --tag-color-text-four: #78BF77;
+  --checkbox-color: #57EB70;
   --button-color: #49beb7;
   --box-color: #fff1d6;
   --box-color-2: #d3e6ff;
-  --box-color-3: #ffd9d9;
-  --box-color-4: #daffe5;
-  --task-color: #777982;
+  --box-color-3: #4CCA2CB8;
+  --box-color-4: #78BF77;;
+  --task-color: #78BF77;;
 }
 
 %flex {
@@ -133,15 +133,16 @@ button {
   }
 
   .top-part {
-    padding: 30px;
+    /* padding: 30px; */
     @extend %flex;
     align-self: flex-end;
 
     svg {
-      width: 14px;
-      height: 14px;
+      width: 14vh;
+      height: 14vh;
       color: var(--main-color);
       margin-right: 14px;
+      cursor: pointer;
     }
 
     .count {
@@ -413,6 +414,14 @@ button {
 
 .task-manager{
   .header{
-    color: #fff;
+    color: #FFFFFF;
   }
+}
+
+.task-name{
+  color: black;
+}
+
+.person-icon{
+  height: 100vh;
 }

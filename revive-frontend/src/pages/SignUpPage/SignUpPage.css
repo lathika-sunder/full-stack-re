@@ -1,42 +1,44 @@
 .sign-up-landing {
-    display: flex;
-    flex-direction: row;
-    font-family: Arial, Helvetica, sans-serif;
-    background-size: cover;
-    height:  82vh;
-
-h1 {
-
-    padding: 1vh;
-    border-radius: 1vh;
-    font-size: 12vh;
-}
-.column{
-    width: 180vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-}
+    .hero-content p {
+      line-height: 1.8;
+      color: rgb(255, 255, 255, 0.573);
+    }
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    h1 {
+      padding: 1vh;
+      font-size: 5vh;
+    }
+    .column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      padding: 3%;
+    }
+  }
 @media only screen and (max-width: 768px) {
-    .sign-up-landing{
-        flex-direction: column;
-    }
-    .sign-up-landing .line{
-        background-color: rgba(0, 0, 0, 0.637);
-        width: 100%;
-        height: 0vh;
-    }
-    .sign-up-landing .column{
-        width: 100%;
-        padding-bottom: 6vh;
-    }
-    .sign-up-landing .hero-content p{
-        width: fit-content;
-    }
-    .hero-content{
-        margin: 0 0 0 0;
-        padding: 0;
-    }
+  .sign-up-landing {
+    flex-direction: column;
+  }
+  .sign-up-landing .line {
+    background-color: rgba(0, 0, 0, 0.637);
+    width: 100%;
+    height: 0vh;
+  }
+  .sign-up-landing .column {
+    width: 100%;
+    padding-bottom: 6vh;
+  }
+  .sign-up-landing .hero-content p {
+    width: fit-content;
+  }
+  .hero-content {
+    margin: 0 0 0 0;
+    padding: 0;
+  }
 }

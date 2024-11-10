@@ -62,6 +62,7 @@ export default function LoginPage() {
             }
           })
           .catch((error) => {
+            toast.error("Invalid  Credentials")
             console.log("Error Logging in", error);
           });
         
@@ -98,7 +99,7 @@ export default function LoginPage() {
               <Typography level="h4" component="h1">
                 <b>Login</b>
               </Typography>
-              <Typography level="body-sm">Login to your account.</Typography>
+              
               <br/>
             </div>
             <form onSubmit={handleSubmit}>
@@ -136,7 +137,7 @@ export default function LoginPage() {
             </form>
             <br></br>
             <Typography
-              endDecorator={<Link href="/login">Log in</Link>}
+              endDecorator={<Link href="/sign-up">Sign Up</Link>}
               fontSize="sm"
               sx={{ alignSelf: "center" }}
             >

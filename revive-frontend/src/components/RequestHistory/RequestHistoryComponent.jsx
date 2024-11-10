@@ -3,6 +3,9 @@ import { FaCheck } from "react-icons/fa";
 import { CiNoWaitingSign } from "react-icons/ci";
 import { FaRegClock } from "react-icons/fa6";
 import "./RequestHistory.css";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 import axios from "axios";
 import DateGraphComp from "../DateGraphComp/DateGraphComp";
 
@@ -57,11 +60,23 @@ const RequestHistoryComponent = () => {
 
   return (
     <div className="Main_Container">
+      {/* <Breadcrumbs aria-label="breadcrumb">
+      <Link color={"#00bf44"} href="/">
+        Home
+      </Link>
+      <Link color={"#00bf44"} href="/dashboard/individual">
+        Dashboard
+      </Link>
+      <Typography color="white"> RequestHistory</Typography>
+    </Breadcrumbs> */}
+
       <div className="history-content">
-        <DateGraphComp data={data}></DateGraphComp>
+        <div className="">
+          <h1 className="title">Requests</h1>
+          <DateGraphComp data={data} title={"Request History"}></DateGraphComp>
+        </div>
 
         <div className="request-list">
-          <h1>Your Request History</h1>
           {data.map((ele, key) => (
             <RequestElements key={key} ele={ele}></RequestElements>
           ))}
@@ -72,8 +87,6 @@ const RequestHistoryComponent = () => {
 };
 
 const RequestElements = ({ ele }) => {
-
-
   return (
     <div className="Container">
       <div className="image-container">
@@ -81,46 +94,47 @@ const RequestElements = ({ ele }) => {
       </div>
       <div className="content">
         <div className="x">
-          <h2>{ele.description}</h2>
+          <h3>{ele.description}</h3>
 
-          <p> {new Date(ele.selectedDateTime).toLocaleString().split(',')}</p>
+          <p className="date">
+            {" "}
+            {new Date(ele.selectedDateTime).toLocaleString().split(",")}
+          </p>
           <div className="tags">
-            <p>Tags :{" "}</p>
             {ele.tags.map((tag, index) => (
               <span className="waste-tags" key={index}>
                 {tag}{" "}
               </span>
             ))}
           </div>
-          <p>Quantity: {ele.quantity}</p>
-          <p>Address: {ele.address}</p>
+          <p>{ele.quantity} units</p>
+          <p className="address">{ele.address}</p>
         </div>
 
         <div className="status">
           <div>
             {ele.requestStatus === "pending" ? (
               <div className="processing-icon">
-                <FaRegClock className="icon" />
+                <FaRegClock className="icon" color="#E8DF55" />
               </div>
             ) : (
               ""
             )}
             {ele.requestStatus === "Completed" ? (
               <div className="completed-icon">
-                <FaCheck className="icon" />
+                <FaCheck className="icon" color="#00bf00" />
               </div>
             ) : (
               ""
             )}
             {ele.requestStatus === "Rejected" ? (
               <div className="rejected-icon">
-                <CiNoWaitingSign className="icon" />
+                <CiNoWaitingSign className="icon" color="ACDA33" />
               </div>
             ) : (
               ""
             )}
           </div>
-          <p>{ele.requestStatus}</p>
           {ele.requestStatus === "accepted" && <p>Accepted by John</p>}
         </div>
       </div>

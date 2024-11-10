@@ -158,14 +158,6 @@ export default function EnterpriseSignUp() {
               </div>
             ) : (
               <div>
-                <div>
-                  <Typography level="h4" component="h1">
-                    <b>Signup</b>
-                  </Typography>
-                  <Typography level="body-sm">
-                    Register as an Enterpise to start.
-                  </Typography>
-                </div>
                 <form onSubmit={handleSubmit}>
                   <FormControl>
                     <FormLabel>Company Name</FormLabel>
@@ -259,6 +251,7 @@ export default function EnterpriseSignUp() {
                     Sign Up
                   </button>
                 </form>
+                <br></br>
                 <Typography
                   endDecorator={<Link href="/login">Log in</Link>}
                   fontSize="sm"

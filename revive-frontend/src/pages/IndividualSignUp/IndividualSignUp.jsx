@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function IndividualSignUp() {
   const navigate = useNavigate();
+  const role=location.role;
   const [isOtpSent, setIsOtpSent] = React.useState(false);
   const [otp, setOtp] = React.useState("");
   const [user, setUser] = React.useState(null);
@@ -39,19 +40,28 @@ export default function IndividualSignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
-      console.log(formData);
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        formData.mobile,
-        recaptcha
-      );
-      if (confirmation) setIsOtpSent(true);
-      setUser(confirmation);
-    } catch (error) {}
+    if(role==='individual')
+      individualSignUp();
+    
   };
 
+  const individualSignUp=async()=>{
+    try {
+      const recaptcha = new RecaptchaVerifier(auth, "recaptcha-container", {});
+     console.log(formData);
+     const confirmation = await signInWithPhoneNumber(
+       auth,
+       formData.mobile,
+       recaptcha
+     );
+     console.log(confirmation)
+     if (confirmation) {
+       setIsOtpSent(true)
+       console.log("OTP Snet")
+     };
+     setUser(confirmation);
+   } catch (error) {}
+  }
   const postData = (request, response) => {
     axios
       .post("http://localhost:4040/api/v1/individuals", formData)
@@ -119,14 +129,6 @@ export default function IndividualSignUp() {
               </div>
             ) : (
               <div>
-                <div>
-                  <Typography level="h4" component="h1">
-                    <b>Welcome!</b>
-                  </Typography>
-                  <Typography level="body-sm">
-                    Create an account to start.
-                  </Typography>
-                </div>
                 <form onSubmit={handleSubmit}>
                   <FormControl>
                     <FormLabel>Name</FormLabel>
@@ -192,6 +194,7 @@ export default function IndividualSignUp() {
                     Sign Up
                   </button>
                 </form>
+                <br></br>
                 <Typography
                   endDecorator={<Link href="/login">Log in</Link>}
                   fontSize="sm"
