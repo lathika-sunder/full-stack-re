@@ -1,20 +1,13 @@
 .navbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 
 .nav-bar-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-   padding-right: 5vh;
-    padding-bottom: 15px;
+   margin: 5vh;
     justify-content: start;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style: none;
-    
-    font-weight: bold;
 }
 
 .no-style-link:hover{

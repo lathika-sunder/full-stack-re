@@ -84,10 +84,10 @@ function App() {
               path="/sell-waste/individual"
               element={<SchedulePickup />}
             />
-            <Route exact path="/sell-waste/enterprise" element={<EnterpriserequestComp/>}/>
+            <Route exact path="/sell-waste/enterprise" element={<SchedulePickup/>}/>
             <Route
               exact
-              path="/request-history/individual"
+              path="/request-history"
               element={<IndividualsSaleHistoryPage />}
             />
             <Route

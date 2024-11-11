@@ -17,7 +17,7 @@ const OrderSummaryComponent = ({
   const handleSubmit = () => {
     postData();
     console.log("Order submitted");
-    navigate("/request-history/individual");
+    navigate("/request-history");
   };
   const postData = () => {
     const token = localStorage.getItem("token");

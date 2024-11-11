@@ -32,12 +32,23 @@
 
   .request-list {
     flex: 1; /* Expand to fill remaining space */
-    overflow: auto; /* Enable vertical scrollbar */
+    /* overflow: auto; Enable vertical scrollbar */
     max-height: 60vh;
     padding: 3.5vh;
     margin: 1vh;
+    overflow-y: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+
+
+
+  }
+
+  .request-list::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
   }
 }
+
 
 
 
@@ -49,7 +60,7 @@
 .request-list {
   flex: 1; /* Expand to fill remaining space */
   flex-direction: column;
-  overflow-y: auto; 
+  /* overflow-y: auto;  */
   /* max-height: 500px; Maximum height for the request list */
   /* padding-right: 10px; Adjust for scrollbar width */
 }

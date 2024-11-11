@@ -28,11 +28,7 @@ const IndividualDashboard = () => {
 
   return (
     <div className="individual-dashboard">
-      <div className="title-container">
-        <h1>
-          Welcome <span>{data.name}</span>
-        </h1>
-      </div>
+     
       <div className="individual-dashboard-content">
         <div className="">
           <img src={globeGreen} className="dashboard-img"></img>
@@ -59,7 +55,7 @@ const IndividualDashboard = () => {
 
             <div className="ag-courses_item">
               <Link
-                to="/request-history/individual"
+                to="/request-history"
                 className="ag-courses-item_link"
               >
                 <div className="ag-courses-item_bg"></div>
@@ -73,7 +69,7 @@ const IndividualDashboard = () => {
               </Link>
             </div>
 
-            <div className="ag-courses_item">
+            {/* <div className="ag-courses_item">
               <Link
                 to="/completed-transactions/individual"
                 className="ag-courses-item_link"
@@ -89,7 +85,7 @@ const IndividualDashboard = () => {
                   <span className="ag-courses-item_date">04.11.2022</span>
                 </div>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ const NavbarComp = () => {
   const token = localStorage.getItem("token");
 
   return (
-    <div className="navbar whole-container">
+    <div className="navbar">
       <Link to="/" className="no-style-link" style={{ border: "none" }}>
         <div className="logo">
           <img src={logo} className="logo-img" />
@@ -23,19 +23,6 @@ const NavbarComp = () => {
                 </div>
               </li>
             )}
-            {/* <li className="content-navbar">
-              <Link to="/sign-up">Sign up</Link>
-            </li>
-            <li className="content-navbar">
-              <Link to="/login">Login</Link>
-            </li> */}
-            {/* <li className="content-navbar">
-              <Link to="/scrap-dealers">Scrap Dealers</Link>
-            </li>
-            <li className="content-navbar">
-              <Link to="/recycle-plants">Recycle plants</Link>
-            </li> */}
-           
           </ul>
         </div>
       </nav>

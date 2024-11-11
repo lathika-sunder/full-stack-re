@@ -37,6 +37,10 @@
   .sign-up-landing .hero-content p {
     width: fit-content;
   }
+  .row{
+    display: flex;
+    flex-direction: column;
+  }
   .hero-content {
     margin: 0 0 0 0;
     padding: 0;
